@@ -1,15 +1,16 @@
-import { accountDTO } from "src/accounts/dto/account.dto";
-import { accountsRepository } from "./accounts.repository";
+import { Accounts } from "src/accounts/dto/account.dto";
 import { Injectable } from "@nestjs/common";
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from "typeorm";
 
 @Injectable()
 export class AccountsService {
-    
-    createuser(a: accountDTO){
-         a.id = 1;
-         a.createat = new Date();
-         a.editat = new Date();
-         a.Deleat = new Date();
-         return accountDTO.plainToClass(a);
-    }
+  constructor(
+    @InjectRepository(Accounts)
+    private postRepository: Repository<Accounts>,
+  ) {}
+
+  async findAll(): Promise<Accounts[]> {
+    return this.postRepository.find();
+  }
 }
