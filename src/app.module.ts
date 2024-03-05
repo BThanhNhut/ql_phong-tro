@@ -5,7 +5,7 @@ import { AccountsModule } from './accounts/accounts.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { RolesModule } from './roles/roles.module';
 import { Roles } from './roles/roles.entity';
-import { Accounts } from './accounts/dto/account.dto';
+import { Accounts } from './accounts/accounts.entity';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({

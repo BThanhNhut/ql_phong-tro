@@ -1,16 +1,15 @@
-import { Expose } from 'class-transformer';
-import { IsEmpty } from 'class-validator';
 import { BaseDto } from 'src/common/base.dto';
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, Column, Unique, OneToMany } from 'typeorm';
+import { Accounts } from 'src/accounts/accounts.entity';
 
-@Entity()
+@Entity({ name: 'roles' })
 export class Roles extends BaseDto {
-  @Expose()
-  @IsEmpty()
-  @Column()
+  @Column({ unique: true, nullable: false }) // khong the null
   codes: string;
-  @Expose()
-  @IsEmpty()
-  @Column()
+
+  @Column({ nullable: true })
   roles_name: string;
+
+  @OneToMany(() => Accounts, (account) => account.role)
+  accounts: Accounts[]
 }

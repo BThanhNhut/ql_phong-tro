@@ -3,7 +3,6 @@ import { PrimaryGeneratedColumn } from "typeorm";
 
 
 export abstract class BaseDto {
-  @Expose()
   @PrimaryGeneratedColumn()
   id: number;
 
