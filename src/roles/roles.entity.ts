@@ -11,5 +11,5 @@ export class Roles extends BaseDto {
   roles_name: string;
 
   @OneToMany(() => Accounts, (account) => account.role)
-  accounts: Accounts[]
+  accounts: Accounts[];
 }

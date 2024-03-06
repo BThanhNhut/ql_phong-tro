@@ -7,6 +7,7 @@ import { RolesModule } from './roles/roles.module';
 import { Roles } from './roles/roles.entity';
 import { Accounts } from './accounts/accounts.entity';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { join } from 'path';
 
 @Module({
   imports: [
@@ -20,7 +21,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
         username: configService.get('DB_USERNAME'),
         password: configService.get('DB_PASSWORD'),
         database: configService.get('DB_DATABASE'),
-        entities: [Roles, Accounts],
+        entities: ['dist/**/*.entity{.ts,.js}'],
         synchronize: true,
       }),
       inject: [ConfigService],

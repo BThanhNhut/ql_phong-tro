@@ -4,10 +4,14 @@ import { AccountsService } from './accounts.service';
 import { plainToClass } from 'class-transformer';
 import { ModuleRef } from '@nestjs/core';
 import { CreateAccount } from './dto/CreateAccount ';
+import { RegisterAccount } from './dto/registerAccount.dto';
+import { AuthService } from './auth.service';
 
 @Controller('/accounts')
 export class AccountsController {
-  constructor(private readonly accountsservicxe: AccountsService) {}
+  constructor(private readonly accountsservicxe: AccountsService,
+    private authservice: AuthService
+    ) {};
 
   @Get()
   findAll(): Promise<Accounts[]> {
@@ -20,11 +24,19 @@ export class AccountsController {
     return 'ket qua la' + id;
   }
 
+
   @Post()
-  createAccount(@Body() requestbody: CreateAccount) {
-    console.log(requestbody);
-    return this.accountsservicxe.createAccount(requestbody);
+  registerAccount(@Body() requestBody: RegisterAccount) {
+    return this.authservice.registerAccount(requestBody);
   }
+
+
+
+  // @Post()
+  // createAccount(@Body() requestbody: CreateAccount) {
+  //   console.log(requestbody);
+  //   return this.accountsservicxe.createAccount(requestbody);
+  // }
 
   // @Post()
   // createAccount(@Body() account: AccountDTO) {

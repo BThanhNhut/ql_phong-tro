@@ -2,6 +2,7 @@ import { Accounts } from "../accounts/accounts.entity";
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from "typeorm";
+import { RegisterAccount } from "./dto/registerAccount.dto";
 
 @Injectable()
 export class AccountsService {
@@ -14,8 +15,13 @@ export class AccountsService {
     return this.accountRepository.find();
   }
 
-  createAccount(requestbody: any) {
+  createAccount(requestbody: RegisterAccount) {
     const account = this.accountRepository.create(requestbody);
     return this.accountRepository.save(account);
+  }
+
+  findByUsername (username : string) {
+    console.log("Ket qua la" + username)
+    return this.accountRepository.findOneBy({ username });
   }
 }
