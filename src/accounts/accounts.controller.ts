@@ -30,7 +30,8 @@ export class AccountsController {
 
   @Post('/register')
   registerAccount(@Body() requestBody: RegisterAccount) {
-    return this.authservice.registerAccount(requestBody);
+    // return this.authservice.registerAccount(requestBody);
+    return "Vào dc post";
   }
 
   @Post('/login')
