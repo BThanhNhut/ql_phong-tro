@@ -3,6 +3,8 @@ import { AccountsService } from "./accounts.service";
 import { JwtService } from "@nestjs/jwt";
 import { RegisterAccount } from "./dto/registerAccount.dto";
 import * as bcrypt from 'bcrypt';
+import { CreateAccount } from "./dto/CreateAccount ";
+import { LoginAccount } from "./dto/loginAccount";
 
 
 @Injectable()
@@ -34,6 +36,7 @@ export class AuthService {
       roleId: saveaccount.roleId,
     };
     
+
     const access_token  = await this.jwtService.signAsync(payload, {
       secret: process.env.JWT_SECRET,
     });
@@ -43,4 +46,38 @@ export class AuthService {
       access_token,
     };
   }
+
+  async loginAccount (requestBody: LoginAccount) {
+     const username = await this.accountsservice.findByUsername(
+       requestBody.username,
+     );
+     if (!username) {
+       throw new BadRequestException('invalid credentials');
+     }
+
+     //Check password
+     const isMatchPassword = await bcrypt.compare(requestBody.password,username.password);
+
+     if(!isMatchPassword){
+      throw new BadRequestException('invalid credentials');
+     }
+
+     const payload = {
+       id: username.id,
+       username: username.username,
+       customer_name: username.customer_name,
+       password: username.username,
+       roleId: username.roleId,
+     };
+
+     const access_token = await this.jwtService.signAsync(payload, {
+       secret: process.env.JWT_SECRET,
+     });
+
+     return {
+       msg: 'Account has been login',
+       access_token,
+     };
+  }
+
 }

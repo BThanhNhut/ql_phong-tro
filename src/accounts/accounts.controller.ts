@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, ParseIntPipe, Post, UseInterceptors, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Get, Param, ParseIntPipe, Post, UseGuards, UseInterceptors, UsePipes, ValidationPipe } from '@nestjs/common';
 import { Accounts } from 'src/accounts/accounts.entity';
 import { AccountsService } from './accounts.service';
 import { plainToClass } from 'class-transformer';
@@ -6,14 +6,18 @@ import { ModuleRef } from '@nestjs/core';
 import { CreateAccount } from './dto/CreateAccount ';
 import { RegisterAccount } from './dto/registerAccount.dto';
 import { AuthService } from './auth.service';
+import { LoginAccount } from './dto/loginAccount';
+import { AuthGuard } from 'src/guards/auth.guard';
 
 @Controller('/accounts')
 export class AccountsController {
-  constructor(private readonly accountsservicxe: AccountsService,
-    private authservice: AuthService
-    ) {};
+  constructor(
+    private readonly accountsservicxe: AccountsService,
+    private authservice: AuthService,
+  ) {}
 
   @Get()
+  // @UseGuards(AuthGuard)
   findAll(): Promise<Accounts[]> {
     return this.accountsservicxe.findAll();
   }
@@ -24,13 +28,15 @@ export class AccountsController {
     return 'ket qua la' + id;
   }
 
-
-  @Post()
+  @Post('/register')
   registerAccount(@Body() requestBody: RegisterAccount) {
     return this.authservice.registerAccount(requestBody);
   }
 
-
+  @Post('/login')
+  loginAccount(@Body() requestBody: LoginAccount){
+    return this.authservice.loginAccount(requestBody);
+  }
 
   // @Post()
   // createAccount(@Body() requestbody: CreateAccount) {
