@@ -10,7 +10,7 @@ import { LoginAccount } from './dto/loginAccount';
 import { AuthGuard } from 'src/guards/auth.guard';
 import { get } from 'https';
 
-@Controller('/accounts')
+@Controller('accounts')
 export class AccountsController {
   constructor(
     private readonly accountsservicxe: AccountsService,
@@ -29,7 +29,7 @@ export class AccountsController {
   //   return 'ket qua la 2' + id;
   // }
 
-  @Post('/register')
+  @Post('register')
   async registerAccount(@Body() requestBody: RegisterAccount) {
     console.log('vao dc');
     const result = await this.authservice.registerAccount(requestBody);
