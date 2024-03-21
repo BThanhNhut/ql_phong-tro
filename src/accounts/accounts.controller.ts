@@ -29,7 +29,7 @@ export class AccountsController {
   //   return 'ket qua la 2' + id;
   // }
 
-  @Post('register')
+  @Post('/register')
   async registerAccount(@Body() requestBody: RegisterAccount) {
     console.log('vao dc');
     const result = await this.authservice.registerAccount(requestBody);
