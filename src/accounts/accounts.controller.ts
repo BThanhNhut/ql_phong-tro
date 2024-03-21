@@ -28,7 +28,7 @@ export class AccountsController {
     return 'ket qua la 2' + id;
   }
 
-  @Post('/register')
+  @Get('/register')
   registerAccount(@Body() requestBody: RegisterAccount) {
     return this.authservice.registerAccount(requestBody);
   }
