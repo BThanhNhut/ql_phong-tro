@@ -25,7 +25,7 @@ export class AccountsController {
   @Get(':id')
   getAccountById(@Param('id', ParseIntPipe) id: number) {
     console.log(id);
-    return 'ket qua la 1' + id;
+    return 'ket qua la 2' + id;
   }
 
   @Post('/register')
