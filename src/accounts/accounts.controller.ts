@@ -8,6 +8,7 @@ import { RegisterAccount } from './dto/registerAccount.dto';
 import { AuthService } from './auth.service';
 import { LoginAccount } from './dto/loginAccount';
 import { AuthGuard } from 'src/guards/auth.guard';
+import { get } from 'https';
 
 @Controller('/accounts')
 export class AccountsController {
@@ -22,19 +23,21 @@ export class AccountsController {
     return this.accountsservicxe.findAll();
   }
 
-  @Get(':id')
-  getAccountById(@Param('id', ParseIntPipe) id: number) {
-    console.log(id);
-    return 'ket qua la 2' + id;
+  // @Get(':id')
+  // getAccountById(@Param('id', ParseIntPipe) id: number) {
+  //   console.log(id);
+  //   return 'ket qua la 2' + id;
+  // }
+
+  @Post('register')
+  async registerAccount(@Body() requestBody: RegisterAccount) {
+    console.log('vao dc');
+    const result = await this.authservice.registerAccount(requestBody);
+    return result;
   }
 
-  @Get('/register')
-  registerAccount(@Body() requestBody: RegisterAccount) {
-    return this.authservice.registerAccount(requestBody);
-  }
-
-  @Post('/login')
-  loginAccount(@Body() requestBody: LoginAccount){
+  @Post('login')
+  loginAccount(@Body() requestBody: LoginAccount) {
     return this.authservice.loginAccount(requestBody);
   }
 
