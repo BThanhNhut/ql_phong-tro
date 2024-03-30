@@ -13,14 +13,14 @@ import { get } from 'https';
 @Controller('accounts')
 export class AccountsController {
   constructor(
-    private readonly accountsservicxe: AccountsService,
+    private readonly accountsservice: AccountsService,
     private authservice: AuthService,
   ) {}
 
   @Get()
   // @UseGuards(AuthGuard)
   findAll(): Promise<Accounts[]> {
-    return this.accountsservicxe.findAll();
+    return this.accountsservice.findAll();
   }
 
   // @Get(':id')

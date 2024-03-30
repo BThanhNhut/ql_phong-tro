@@ -8,6 +8,9 @@ import { Roles } from './roles/roles.entity';
 import { Accounts } from './accounts/accounts.entity';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { join } from 'path';
+import { RoomsModule } from './rooms/rooms.module';
+
+
 
 @Module({
   imports: [
@@ -28,6 +31,7 @@ import { join } from 'path';
     }),
     AccountsModule,
     RolesModule,
+    RoomsModule
   ],
   controllers: [AppController],
   providers: [AppService],

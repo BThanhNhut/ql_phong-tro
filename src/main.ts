@@ -6,9 +6,6 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   // Sử dụng validationpile ở global
   app.useGlobalPipes()
-  
-  await app.listen(process.env.PORT || 3000, () => {
-    console.log('Kết nói api thành công');
-  });
+  await app.listen(process.env.PORT,'0.0.0.0');
 }
 bootstrap();
