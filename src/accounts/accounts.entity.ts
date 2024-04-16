@@ -21,8 +21,5 @@ export class Accounts extends BaseDto {
 
   @ManyToOne(() => Roles, (role) => role.accounts)
   @JoinColumn({ name: 'id_roles' }) // Thêm dòng này để chỉ định tên trường khóa ngoại
-  role: Roles;
-
-  @Column({ name: 'id_roles', nullable: false }) // Thêm cột id_roles vào entity
-  roleId: number; // Đây là id của bảng Roles
+  roles: Roles;
 }

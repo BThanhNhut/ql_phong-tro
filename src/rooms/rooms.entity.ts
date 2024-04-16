@@ -1,5 +1,6 @@
-import { BaseDto } from "src/common/base.dto";
-import { Column, Entity, ManyToOne } from "typeorm";
+import { BaseDto } from 'src/common/base.dto';
+import { Types } from 'src/types/types.entity';
+import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
 
 @Entity({ name: 'rooms' })
 export class Rooms extends BaseDto {
@@ -33,6 +34,7 @@ export class Rooms extends BaseDto {
   district: string;
   @Column()
   ward: string;
-  @Column()
-  id_type: number;
+  @ManyToOne(() => Types, (type) => type.rooms)
+  @JoinColumn({ name: 'id_type' })
+  types: Types;
 }

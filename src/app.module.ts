@@ -4,13 +4,19 @@ import { AppService } from './app.service';
 import { AccountsModule } from './accounts/accounts.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { RolesModule } from './roles/roles.module';
-import { Roles } from './roles/roles.entity';
-import { Accounts } from './accounts/accounts.entity';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { join } from 'path';
 import { RoomsModule } from './rooms/rooms.module';
-
-
+import { Types } from './types/types.entity';
+import { ImagesModule } from './images/images.module';
+import { PosttypeModule } from './posttype/posttype.module';
+import { PostsModule } from './posts/post.module';
+import { FavoritesModule } from './favorites/favorites.module';
+import { ServicesModule } from './services/services.module';
+import { AmenitiesModule } from './amenities/amenities.module';
+import { FurnitureModule } from './furniture/furniture.module';
+import { ServiceDetailsModule } from './servicedetails/servicedetails.module';
+import { FacilitydetailsModule } from './facilitydetails/facilitydetails.module';
+import { FurnituredetailsController } from './furnituredetails/furnituredetails.controller';
 
 @Module({
   imports: [
@@ -25,13 +31,25 @@ import { RoomsModule } from './rooms/rooms.module';
         password: configService.get('DB_PASSWORD'),
         database: configService.get('DB_DATABASE'),
         entities: ['dist/**/*.entity{.ts,.js}'],
+        autoLoadEntities: true,
         synchronize: true,
       }),
       inject: [ConfigService],
     }),
-    AccountsModule,
     RolesModule,
-    RoomsModule
+    AccountsModule,
+    Types,
+    RoomsModule,
+    ImagesModule,
+    PosttypeModule,
+    PostsModule,
+    FavoritesModule,
+    ServicesModule,
+    AmenitiesModule,
+    FurnitureModule,
+    ServiceDetailsModule,
+    FacilitydetailsModule,
+    FurnitureModule,
   ],
   controllers: [AppController],
   providers: [AppService],

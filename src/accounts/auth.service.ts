@@ -1,31 +1,32 @@
-import { BadRequestException, Injectable } from "@nestjs/common";
-import { AccountsService } from "./accounts.service";
-import { JwtService } from "@nestjs/jwt";
-import { RegisterAccount } from "./dto/registerAccount.dto";
+import { BadRequestException, Injectable } from '@nestjs/common';
+import { AccountsService } from './accounts.service';
+import { JwtService } from '@nestjs/jwt';
+import { RegisterAccount } from './dto/registerAccount.dto';
 import * as bcrypt from 'bcrypt';
-import { CreateAccount } from "./dto/CreateAccount ";
-import { LoginAccount } from "./dto/loginAccount";
-
+import { CreateAccount } from './dto/CreateAccount ';
+import { LoginAccount } from './dto/loginAccount';
 
 @Injectable()
 export class AuthService {
   constructor(
     private accountsservice: AccountsService,
     private jwtService: JwtService,
-  ) {};
+  ) {}
 
-  async registerAccount(requestBody: RegisterAccount){
-    console.log("au au")
-    const username = await this.accountsservice.findByUsername(requestBody.username);
-    if(username){
+  async registerAccount(requestBody: RegisterAccount) {
+    console.log('au au');
+    const username = await this.accountsservice.findByUsername(
+      requestBody.username,
+    );
+    if (username) {
       throw new BadRequestException('Username already exist');
     }
     //hash password
-    const hashpassword = await bcrypt.hash(requestBody.password,10);
+    const hashpassword = await bcrypt.hash(requestBody.password, 10);
     requestBody.password = hashpassword;
 
     //save user
-    const saveaccount  = await this.accountsservice.createAccount(requestBody);
+    const saveaccount = await this.accountsservice.createAccount(requestBody);
 
     // generate jwt token
     const payload = {
@@ -33,11 +34,10 @@ export class AuthService {
       username: saveaccount.username,
       customer_name: saveaccount.customer_name,
       password: saveaccount.username,
-      roleId: saveaccount.roleId,
+      // roleId: saveaccount.roleId,
     };
-    
 
-    const access_token  = await this.jwtService.signAsync(payload, {
+    const access_token = await this.jwtService.signAsync(payload, {
       secret: process.env.JWT_SECRET,
     });
 
@@ -47,37 +47,39 @@ export class AuthService {
     };
   }
 
-  async loginAccount (requestBody: LoginAccount) {
-     const username = await this.accountsservice.findByUsername(
-       requestBody.username,
-     );
-     if (!username) {
-       throw new BadRequestException('invalid credentials');
-     }
-
-     //Check password
-     const isMatchPassword = await bcrypt.compare(requestBody.password,username.password);
-
-     if(!isMatchPassword){
+  async loginAccount(requestBody: LoginAccount) {
+    const username = await this.accountsservice.findByUsername(
+      requestBody.username,
+    );
+    if (!username) {
       throw new BadRequestException('invalid credentials');
-     }
+    }
 
-     const payload = {
-       id: username.id,
-       username: username.username,
-       customer_name: username.customer_name,
-       password: username.username,
-       roleId: username.roleId,
-     };
+    //Check password
+    const isMatchPassword = await bcrypt.compare(
+      requestBody.password,
+      username.password,
+    );
 
-     const access_token = await this.jwtService.signAsync(payload, {
-       secret: process.env.JWT_SECRET,
-     });
+    if (!isMatchPassword) {
+      throw new BadRequestException('invalid credentials');
+    }
 
-     return {
-       msg: 'Account has been login',
-       access_token,
-     };
+    const payload = {
+      id: username.id,
+      username: username.username,
+      customer_name: username.customer_name,
+      password: username.username,
+      //  roleId: username.roleId,
+    };
+
+    const access_token = await this.jwtService.signAsync(payload, {
+      secret: process.env.JWT_SECRET,
+    });
+
+    return {
+      msg: 'Account has been login',
+      access_token,
+    };
   }
-
 }
