@@ -1,6 +1,11 @@
+import { Amenitiesdetails } from 'src/amenitiesdetails/amenitiesdetails.entity';
 import { BaseDto } from 'src/common/base.dto';
+import { Furnituredetails } from 'src/furnituredetails/furnituredetails.entity';
+import { Images } from 'src/images/images.entity';
+import { Posts } from 'src/posts/posts.entity';
+import { Servicedetails } from 'src/servicedetails/servicedetails.entity';
 import { Types } from 'src/types/types.entity';
-import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
 
 @Entity({ name: 'rooms' })
 export class Rooms extends BaseDto {
@@ -37,4 +42,22 @@ export class Rooms extends BaseDto {
   @ManyToOne(() => Types, (type) => type.rooms)
   @JoinColumn({ name: 'id_type' })
   types: Types;
+
+  @OneToMany(() => Posts, (post) => post.rooms)
+  posts: Posts[];
+
+  @OneToMany(() => Images, (image) => image.rooms)
+  images: Images[];
+
+  @OneToMany(() => Servicedetails, (servicedetail) => servicedetail.rooms)
+  Servicedetails: Servicedetails[];
+
+  @OneToMany(() => Furnituredetails, (furnituredetail) => furnituredetail.rooms)
+  furnituredetails: Furnituredetails[];
+
+  @OneToMany(
+    () => Amenitiesdetails,
+    (amenitiesdetails) => amenitiesdetails.rooms,
+  )
+  amenitiesdetails: Amenitiesdetails[];
 }

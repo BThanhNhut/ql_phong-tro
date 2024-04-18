@@ -1,6 +1,6 @@
 import { Controller, Injectable } from '@nestjs/common';
 
 @Injectable()
-export class FacilitydetailsService {
+export class AmenitiesdetailsService {
   constructor() {}
 }

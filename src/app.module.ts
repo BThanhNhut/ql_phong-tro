@@ -9,14 +9,14 @@ import { RoomsModule } from './rooms/rooms.module';
 import { Types } from './types/types.entity';
 import { ImagesModule } from './images/images.module';
 import { PosttypeModule } from './posttype/posttype.module';
-import { PostsModule } from './posts/post.module';
+import { PostsModule } from './posts/posts.module';
 import { FavoritesModule } from './favorites/favorites.module';
 import { ServicesModule } from './services/services.module';
 import { AmenitiesModule } from './amenities/amenities.module';
 import { FurnitureModule } from './furniture/furniture.module';
 import { ServiceDetailsModule } from './servicedetails/servicedetails.module';
-import { FacilitydetailsModule } from './facilitydetails/facilitydetails.module';
-import { FurnituredetailsController } from './furnituredetails/furnituredetails.controller';
+import { FacilitydetailsModule } from './amenitiesdetails/amenitiesdetails.module';
+import { FurnituredetailsModule } from './furnituredetails/furnituredetails.module';
 
 @Module({
   imports: [
@@ -46,10 +46,11 @@ import { FurnituredetailsController } from './furnituredetails/furnituredetails.
     FavoritesModule,
     ServicesModule,
     AmenitiesModule,
+
     FurnitureModule,
+    FurnituredetailsModule,
     ServiceDetailsModule,
     FacilitydetailsModule,
-    FurnitureModule,
   ],
   controllers: [AppController],
   providers: [AppService],
