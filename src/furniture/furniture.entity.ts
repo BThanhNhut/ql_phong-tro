@@ -5,7 +5,7 @@ import { Column, Entity, OneToMany } from 'typeorm';
 @Entity('furniture')
 export class Furniture extends BaseDto {
   @Column()
-  amenity_name: string;
+  furniture_name: string;
   @Column()
   icon: string;
   @Column()

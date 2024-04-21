@@ -15,7 +15,7 @@ import { ServicesModule } from './services/services.module';
 import { AmenitiesModule } from './amenities/amenities.module';
 import { FurnitureModule } from './furniture/furniture.module';
 import { ServiceDetailsModule } from './servicedetails/servicedetails.module';
-import { FacilitydetailsModule } from './amenitiesdetails/amenitiesdetails.module';
+import { AmenitiesdetailsModule } from './amenitiesdetails/amenitiesdetails.module';
 import { FurnituredetailsModule } from './furnituredetails/furnituredetails.module';
 
 @Module({
@@ -46,11 +46,11 @@ import { FurnituredetailsModule } from './furnituredetails/furnituredetails.modu
     FavoritesModule,
     ServicesModule,
     AmenitiesModule,
-
     FurnitureModule,
-    FurnituredetailsModule,
+
     ServiceDetailsModule,
-    FacilitydetailsModule,
+    FurnituredetailsModule,
+    AmenitiesdetailsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

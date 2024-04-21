@@ -1,6 +1,18 @@
-import { Controller, Injectable } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Injectable,
+  Param,
+  ParseIntPipe,
+} from '@nestjs/common';
+import { ServicesService } from './services.service';
 
 @Controller('services')
 export class ServicesController {
-  constructor() {}
+  constructor(private readonly servicesservice: ServicesService) {}
+
+  @Get(':id')
+  findServicesByRoomId(@Param('id', ParseIntPipe) id: number) {
+    return this.servicesservice.findServicesByRoomId(id);
+  }
 }

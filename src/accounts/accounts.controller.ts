@@ -1,4 +1,15 @@
-import { Body, Controller, Get, Param, ParseIntPipe, Post, UseGuards, UseInterceptors, UsePipes, ValidationPipe } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  ParseIntPipe,
+  Post,
+  UseGuards,
+  UseInterceptors,
+  UsePipes,
+  ValidationPipe,
+} from '@nestjs/common';
 import { Accounts } from 'src/accounts/accounts.entity';
 import { AccountsService } from './accounts.service';
 import { plainToClass } from 'class-transformer';
@@ -8,7 +19,6 @@ import { RegisterAccount } from './dto/registerAccount.dto';
 import { AuthService } from './auth.service';
 import { LoginAccount } from './dto/loginAccount';
 import { AuthGuard } from 'src/guards/auth.guard';
-import { get } from 'https';
 
 @Controller('accounts')
 export class AccountsController {

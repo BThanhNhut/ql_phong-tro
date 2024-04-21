@@ -5,6 +5,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { Accounts } from 'src/accounts/accounts.entity';
 import { FurnituredetailsController } from './furnituredetails.controller';
 import { FurnituredetailsService } from './furnituredetails.service';
+import { AmenitiesModule } from 'src/amenities/amenities.module';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Accounts, Roles])],

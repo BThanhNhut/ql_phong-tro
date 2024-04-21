@@ -1,13 +1,14 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Roles } from 'src/roles/roles.entity';
-import { JwtModule } from '@nestjs/jwt';
 import { Accounts } from 'src/accounts/accounts.entity';
 import { AmenitiesController } from './amenities.controller';
+import { Amenities } from './amenities.entity';
+import { AmenitiesService } from './amenities.service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Accounts, Roles])],
+  imports: [TypeOrmModule.forFeature([Accounts, Roles, Amenities])],
   controllers: [AmenitiesController],
-  providers: [AmenitiesController],
+  providers: [AmenitiesService],
 })
 export class AmenitiesModule {}

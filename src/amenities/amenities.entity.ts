@@ -10,7 +10,6 @@ export class Amenities extends BaseDto {
   icon: string;
   @Column()
   status: boolean;
-
   @OneToMany(
     () => Amenitiesdetails,
     (amenitiesdetail) => amenitiesdetail.amenities,
