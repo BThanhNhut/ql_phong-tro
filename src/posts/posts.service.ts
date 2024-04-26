@@ -25,6 +25,7 @@ export class PostsService {
       .select([
         'posts.id',
         'posts.title',
+        'posts.create_at',
         'rooms.name_room',
         'rooms.room_price',
         'rooms.area_width',
@@ -32,6 +33,7 @@ export class PostsService {
         'rooms.number_of_people',
         'rooms.address',
         'rooms.province',
+        'rooms.note_gender',
         'rooms.note',
         'accounts.customer_name',
       ])
@@ -55,7 +57,7 @@ export class PostsService {
       .select([
         'posts.id',
         'posts.title',
-        'post.create_at',
+        'posts.create_at',
         'rooms.name_room',
         'rooms.room_price',
         'rooms.area_width',
