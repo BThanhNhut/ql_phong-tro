@@ -15,4 +15,10 @@ export class PostsController {
     console.log(id);
     return this.postsservice.getDetailPost(id);
   }
+
+  @Get('whistlist')
+  getWishListById(): Promise<any[]> {
+    console.log('Vào dc wishlist');
+    return this.postsservice.getWishListById();
+  }
 }

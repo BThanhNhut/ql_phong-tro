@@ -1,6 +1,6 @@
 import { Controller, Injectable } from '@nestjs/common';
 
-@Controller('Amenitiesdetails')
+@Controller('amenitiesdetails')
 export class AmenitiesdetailsController {
   constructor() {}
 }

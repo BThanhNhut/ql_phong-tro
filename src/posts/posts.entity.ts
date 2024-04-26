@@ -9,6 +9,10 @@ import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
 export class Posts extends BaseDto {
   @Column()
   title: string;
+
+  @Column()
+  create_at: Date;
+
   @ManyToOne(() => Posttype, (posttype) => posttype.posts)
   @JoinColumn({ name: 'id_posttype' })
   posttype: Posttype;

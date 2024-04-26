@@ -6,7 +6,6 @@ import {
   ParseIntPipe,
 } from '@nestjs/common';
 import { ServiceDetailsService } from './servicedetails.service';
-import { get } from 'http';
 
 @Controller('servicedetails')
 export class ServiceDetailsController {

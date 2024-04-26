@@ -4,6 +4,7 @@ import { Posts } from './posts.entity';
 import { Posttype } from 'src/posttype/posttype.entity';
 import { Rooms } from 'src/rooms/rooms.entity';
 import { Repository } from 'typeorm';
+import { promises } from 'dns';
 
 @Injectable()
 export class PostsService {
@@ -20,6 +21,7 @@ export class PostsService {
       .createQueryBuilder('posts')
       .leftJoinAndSelect('posts.posttype', 'posttype')
       .leftJoinAndSelect('posts.rooms', 'rooms')
+      .leftJoinAndSelect('posts.accounts', 'accounts')
       .select([
         'posts.id',
         'posts.title',
@@ -31,7 +33,17 @@ export class PostsService {
         'rooms.address',
         'rooms.province',
         'rooms.note',
+        'accounts.customer_name',
       ])
+      .getMany();
+  }
+
+  async getAllPost2(): Promise<any[]> {
+    return this.postRepo
+      .createQueryBuilder('posts')
+      .innerJoinAndSelect('posts.posttype', 'posttype')
+      .innerJoinAndSelect('posts.rooms', 'rooms')
+      .innerJoinAndSelect('posts.accounts', 'accounts')
       .getMany();
   }
 
@@ -54,5 +66,28 @@ export class PostsService {
       ])
       .where('posts.id = :id', { id: id_room })
       .getOne();
+  }
+
+  async createPost(createPostDto: any): Promise<any> {
+    const newPost = this.posttypeRepo.create(createPostDto);
+    return this.posttypeRepo.save(newPost);
+  }
+
+  //
+  async getWishListById(): Promise<any[]> {
+    return this.postRepo
+      .createQueryBuilder('posts')
+      .innerJoinAndSelect(
+        'favorites',
+        'favorites',
+        'favorites.id_post = posts.id',
+      )
+      .innerJoinAndSelect(
+        'accounts',
+        'accounts',
+        'favorites.id_accounts = accounts.id',
+      )
+      .where('accounts.id = :id', { id: 2 })
+      .getMany();
   }
 }
