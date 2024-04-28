@@ -35,6 +35,7 @@ export class PostsService {
         'rooms.province',
         'rooms.note_gender',
         'rooms.note',
+        'rooms.image',
         'accounts.customer_name',
       ])
       .getMany();
