@@ -28,6 +28,7 @@ export class PostsService {
         'posts.title',
         'posts.create_at',
 
+        'rooms.id',
         'rooms.name_room',
         'rooms.address',
         'rooms.room_price',
@@ -73,6 +74,7 @@ export class PostsService {
         'posts.title',
         'posts.create_at',
 
+        'rooms.id',
         'rooms.name_room',
         'rooms.address',
         'rooms.room_price',
