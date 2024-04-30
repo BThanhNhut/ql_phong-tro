@@ -27,16 +27,23 @@ export class PostsService {
         'posts.id',
         'posts.title',
         'posts.create_at',
+
         'rooms.name_room',
+        'rooms.address',
         'rooms.room_price',
+        'rooms.deposit_price',
+        'rooms.image',
         'rooms.area_width',
         'rooms.area_height',
+        'rooms.phone_number',
+        'rooms.floor',
         'rooms.number_of_people',
-        'rooms.address',
-        'rooms.province',
-        'rooms.note_gender',
         'rooms.note',
-        'rooms.image',
+        'rooms.note',
+        'rooms.province',
+        'rooms.district',
+        'rooms.ward',
+
         'accounts.customer_name',
       ])
       .getMany();
@@ -79,6 +86,8 @@ export class PostsService {
         'rooms.province',
         'rooms.district',
         'rooms.ward',
+
+        'accounts.customer_name',
       ])
       .where('posts.id = :id', { id: id_room })
       .getOne();
@@ -101,22 +110,16 @@ export class PostsService {
         'posts.id',
         'posts.title',
         'posts.create_at',
-
         'rooms.name_room',
-        'rooms.address',
         'rooms.room_price',
-        'rooms.deposit_price',
-        'rooms.image',
         'rooms.area_width',
         'rooms.area_height',
-        'rooms.phone_number',
-        'rooms.floor',
         'rooms.number_of_people',
-        'rooms.note',
-        'rooms.note',
+        'rooms.address',
         'rooms.province',
-        'rooms.district',
-        'rooms.ward',
+        'rooms.note_gender',
+        'rooms.note',
+        'rooms.image',
       ])
       .where('accounts.id = :id', { id })
       .getMany();
