@@ -66,6 +66,7 @@ export class PostsService {
       .createQueryBuilder('posts')
       .leftJoinAndSelect('posts.posttype', 'posttype')
       .leftJoinAndSelect('posts.rooms', 'rooms')
+      .leftJoinAndSelect('posts.accounts', 'accounts')
       .select([
         'posts.id',
         'posts.title',
