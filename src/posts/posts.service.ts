@@ -64,9 +64,10 @@ export class PostsService {
   async getDetailPost(id_room: any): Promise<any> {
     return this.postRepo
       .createQueryBuilder('posts')
-      .leftJoinAndSelect('posts.posttype', 'posttype')
-      .leftJoinAndSelect('posts.rooms', 'rooms')
-      .leftJoinAndSelect('posts.accounts', 'accounts')
+      .innerJoinAndSelect('posts.posttype', 'posttype')
+      .innerJoinAndSelect('posts.rooms', 'rooms')
+      .innerJoinAndSelect('rooms.types', 'types')
+      .innerJoinAndSelect('posts.accounts', 'accounts')
       .select([
         'posts.id',
         'posts.title',
@@ -87,6 +88,9 @@ export class PostsService {
         'rooms.province',
         'rooms.district',
         'rooms.ward',
+
+        'types.type_name',
+        'types.status',
 
         'accounts.customer_name',
       ])
