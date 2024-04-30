@@ -93,16 +93,21 @@ export class PostsService {
         'posts.id',
         'posts.title',
         'posts.create_at',
+
         'rooms.name_room',
+        'rooms.address',
         'rooms.room_price',
+        'rooms.deposit_price',
+        'rooms.image',
         'rooms.area_width',
         'rooms.area_height',
+        'rooms.phone_number',
+        'rooms.floor',
         'rooms.number_of_people',
-        'rooms.address',
-        'rooms.province',
-        'rooms.note_gender',
         'rooms.note',
-        'rooms.image',
+        'rooms.province',
+        'rooms.district',
+        'rooms.ward',
       ])
       .where('accounts.id = :id', { id })
       .getMany();
