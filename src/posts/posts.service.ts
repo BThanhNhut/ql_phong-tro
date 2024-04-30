@@ -5,6 +5,7 @@ import { Posttype } from 'src/posttype/posttype.entity';
 import { Rooms } from 'src/rooms/rooms.entity';
 import { Repository } from 'typeorm';
 import { promises } from 'dns';
+import { Favorites } from 'src/favorites/favorites.entity';
 
 @Injectable()
 export class PostsService {
@@ -13,8 +14,8 @@ export class PostsService {
     private readonly postRepo: Repository<Posts>,
     @InjectRepository(Posttype)
     private readonly posttypeRepo: Repository<Posttype>,
-    @InjectRepository(Rooms)
-    private readonly roomrepo: Repository<Rooms>,
+    @InjectRepository(Favorites)
+    private readonly favoritesRepo: Repository<Favorites>,
   ) {}
   async getAllPost(): Promise<any[]> {
     return this.postRepo
@@ -82,18 +83,27 @@ export class PostsService {
 
   //
   async getWishListById(id: number): Promise<any[]> {
-    return this.postRepo
-      .createQueryBuilder('posts')
-      .innerJoinAndSelect(
-        'favorites',
-        'favorites',
-        'favorites.id_post = posts.id',
-      )
-      .innerJoinAndSelect(
-        'accounts',
-        'accounts',
-        'favorites.id_accounts = accounts.id',
-      )
+    return this.favoritesRepo
+      .createQueryBuilder('favorites')
+      .innerJoinAndSelect('favorites.posts', 'posts')
+      .innerJoinAndSelect('posts.rooms', 'rooms')
+      .innerJoinAndSelect('favorites.accounts', 'accounts')
+      .select([
+        'favorites.id',
+        'posts.id',
+        'posts.title',
+        'posts.create_at',
+        'rooms.name_room',
+        'rooms.room_price',
+        'rooms.area_width',
+        'rooms.area_height',
+        'rooms.number_of_people',
+        'rooms.address',
+        'rooms.province',
+        'rooms.note_gender',
+        'rooms.note',
+        'rooms.image',
+      ])
       .where('accounts.id = :id', { id })
       .getMany();
   }

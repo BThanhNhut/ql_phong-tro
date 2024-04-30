@@ -8,10 +8,18 @@ import { PostsService } from './posts.service';
 import { Posttype } from 'src/posttype/posttype.entity';
 import { Posts } from './posts.entity';
 import { Rooms } from 'src/rooms/rooms.entity';
+import { Favorites } from 'src/favorites/favorites.entity';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Accounts, Roles, Posttype, Posts, Rooms]),
+    TypeOrmModule.forFeature([
+      Accounts,
+      Roles,
+      Posttype,
+      Posts,
+      Rooms,
+      Favorites,
+    ]),
   ],
   controllers: [PostsController],
   providers: [PostsService],

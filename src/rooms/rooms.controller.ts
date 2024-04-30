@@ -2,6 +2,7 @@ import { Controller, Get, Param } from '@nestjs/common';
 import { RoomServices } from './rooms.service';
 import { Rooms } from './rooms.entity';
 import { Services } from 'src/services/services.entity';
+import { get } from 'http';
 
 @Controller('rooms')
 export class RoomsController {
@@ -16,6 +17,12 @@ export class RoomsController {
   findAll(): Promise<any[]> {
     console.log(this.roomservice.findAll());
     return this.roomservice.findAll();
+  }
+
+  @Get('abcd/:id')
+  getAllWhishlist(@Param('id') id: string): string {
+    console.log('abc' + id);
+    return 'Vao dc wishlist';
   }
 
   @Get(':id/services')

@@ -71,4 +71,6 @@ export class RoomServices {
       .where('rooms.id = :roomId', { roomId })
       .getMany();
   }
+
+  
 }

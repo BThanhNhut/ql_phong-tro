@@ -7,7 +7,7 @@ export class PostsController {
 
   @Get()
   findAll(): Promise<any[]> {
-    return this.postsservice.getAllPost2();
+    return this.postsservice.getAllPost();
   }
 
   @Get(':id')
@@ -17,7 +17,7 @@ export class PostsController {
     return this.postsservice.getDetailPost(id);
   }
 
-  @Get('whistlist/:id')
+  @Get('whishlist/:id')
   getWishListById(@Param('id', ParseIntPipe) id: number): Promise<any[]> {
     console.log('Vào dc wishlist');
     return this.postsservice.getWishListById(id);
