@@ -63,14 +63,22 @@ export class PostsService {
         'posts.id',
         'posts.title',
         'posts.create_at',
+
         'rooms.name_room',
+        'rooms.address',
         'rooms.room_price',
+        'rooms.deposit_price',
+        'rooms.image',
         'rooms.area_width',
         'rooms.area_height',
+        'rooms.phone_number',
+        'rooms.floor',
         'rooms.number_of_people',
-        'rooms.address',
-        'rooms.province',
         'rooms.note',
+        'rooms.note',
+        'rooms.province',
+        'rooms.district',
+        'rooms.ward',
       ])
       .where('posts.id = :id', { id: id_room })
       .getOne();
@@ -104,6 +112,7 @@ export class PostsService {
         'rooms.phone_number',
         'rooms.floor',
         'rooms.number_of_people',
+        'rooms.note',
         'rooms.note',
         'rooms.province',
         'rooms.district',
