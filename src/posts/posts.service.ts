@@ -92,7 +92,9 @@ export class PostsService {
         'types.type_name',
         'types.status',
 
+        'accounts.id',
         'accounts.customer_name',
+        'accounts.avatar',
       ])
       .where('posts.id = :id', { id: id_room })
       .getOne();
