@@ -42,12 +42,15 @@ export class PostsService {
   }
 
   async getAllPost2(): Promise<any[]> {
-    return this.postRepo
-      .createQueryBuilder('posts')
-      .innerJoinAndSelect('posts.posttype', 'posttype')
-      .innerJoinAndSelect('posts.rooms', 'rooms')
-      .innerJoinAndSelect('posts.accounts', 'accounts')
-      .getMany();
+    return (
+      this.postRepo
+        .createQueryBuilder('posts')
+        .innerJoinAndSelect('posts.posttype', 'posttype')
+        .innerJoinAndSelect('posts.rooms', 'rooms')
+        .innerJoinAndSelect('posts.accounts', 'accounts')
+        // .select(['posts.id', 'posts.title', 'posts.create_at'])
+        .getMany()
+    );
   }
 
   async getDetailPost(id_room: any): Promise<any> {
@@ -78,7 +81,7 @@ export class PostsService {
   }
 
   //
-  async getWishListById(): Promise<any[]> {
+  async getWishListById(id: number): Promise<any[]> {
     return this.postRepo
       .createQueryBuilder('posts')
       .innerJoinAndSelect(
@@ -91,7 +94,7 @@ export class PostsService {
         'accounts',
         'favorites.id_accounts = accounts.id',
       )
-      .where('accounts.id = :id', { id: 2 })
+      .where('accounts.id = :id', { id })
       .getMany();
   }
 }
