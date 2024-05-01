@@ -43,7 +43,7 @@ export class RoomsController {
   getAmenitiesByRoomId(@Param('id') id: string): Promise<any[]> {
     const roomId = parseInt(id);
     console.log('vao dc fur');
-    return this.roomservice.getFurnitureByRoomId(roomId);
+    return this.roomservice.getAmenitiesByRoomId(roomId);
   }
 
   @Get(':id/images')
