@@ -8,6 +8,9 @@ import { Servicedetails } from 'src/servicedetails/servicedetails.entity';
 import { Furnituredetails } from 'src/furnituredetails/furnituredetails.entity';
 import { Images } from 'src/images/images.entity';
 import { Amenitiesdetails } from 'src/amenitiesdetails/amenitiesdetails.entity';
+import { Accounts } from 'src/accounts/accounts.entity';
+import { error } from 'console';
+import { Favorites } from 'src/favorites/favorites.entity';
 
 @Injectable()
 export class RoomServices {
@@ -22,6 +25,10 @@ export class RoomServices {
     private amenitiesdetailsRepo: Repository<Amenitiesdetails>,
     @InjectRepository(Images)
     private imagesRepo: Repository<Images>,
+    @InjectRepository(Accounts)
+    private accountsRepo: Repository<Accounts>,
+    @InjectRepository(Favorites)
+    private favorites: Repository<Favorites>,
   ) {}
 
   async findAll(): Promise<Rooms[]> {
@@ -86,5 +93,25 @@ export class RoomServices {
 
     const images = await this.imagesRepo.find({ where: { rooms: room } });
     return images.map((image) => image.url);
+  }
+
+  async getFavorites(id_account: number, id_post): Promise<any> {
+    // const account = await this.accountsRepo.findOneBy({ id });
+    // if (!account) {
+    //   throw new Error('Account not found');
+    // }
+
+    // const favorites = await this.favorites.find();
+
+    const favorite = await this.favorites
+      .createQueryBuilder('favorites')
+      .innerJoinAndSelect('favorites.accounts', 'accounts')
+      .innerJoinAndSelect('favorites.posts', 'posts')
+
+      .where('accounts.id = :id_account ', { id_account })
+      .andWhere('posts.id = :id_post', { id_post })
+      .getMany();
+
+    return favorite.length > 0;
   }
 }

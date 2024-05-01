@@ -13,6 +13,7 @@ import { Furnituredetails } from 'src/furnituredetails/furnituredetails.entity';
 import { Images } from 'src/images/images.entity';
 import { Amenities } from 'src/amenities/amenities.entity';
 import { Amenitiesdetails } from 'src/amenitiesdetails/amenitiesdetails.entity';
+import { Favorites } from 'src/favorites/favorites.entity';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { Amenitiesdetails } from 'src/amenitiesdetails/amenitiesdetails.entity';
       Amenities,
       Amenitiesdetails,
       Images,
+      Favorites,
     ]),
   ],
   controllers: [RoomsController],

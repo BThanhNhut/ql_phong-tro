@@ -52,4 +52,15 @@ export class RoomsController {
     console.log('Vào images');
     return this.roomservice.getRoomImages(roomId);
   }
+
+  @Get(':id_account/:id_post/favorites')
+  getFavorites(
+    @Param('id_account') idAccount: string,
+    @Param('id_post') idPost: string,
+  ): Promise<any> {
+    const accoutId = parseInt(idAccount);
+    const postId = parseInt(idPost);
+    console.log('accout:' + accoutId + 'post' + postId);
+    return this.roomservice.getFavorites(accoutId, postId);
+  }
 }

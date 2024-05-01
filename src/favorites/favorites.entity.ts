@@ -3,10 +3,13 @@ import { Accounts } from 'src/accounts/accounts.entity';
 import { BaseDto } from 'src/common/base.dto';
 import { Posts } from 'src/posts/posts.entity';
 import { Rooms } from 'src/rooms/rooms.entity';
-import { Entity, JoinColumn, ManyToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
 
 @Entity('favorites')
 export class Favorites extends BaseDto {
+  @Column()
+  status: boolean;
+
   @ManyToOne(() => Accounts, (account) => account.favorite)
   @JoinColumn({ name: 'id_accounts' })
   accounts: Accounts;
