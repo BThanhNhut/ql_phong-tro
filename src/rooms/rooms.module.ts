@@ -11,6 +11,8 @@ import { Servicedetails } from 'src/servicedetails/servicedetails.entity';
 import { Furniture } from 'src/furniture/furniture.entity';
 import { Furnituredetails } from 'src/furnituredetails/furnituredetails.entity';
 import { Images } from 'src/images/images.entity';
+import { Amenities } from 'src/amenities/amenities.entity';
+import { Amenitiesdetails } from 'src/amenitiesdetails/amenitiesdetails.entity';
 
 @Module({
   imports: [
@@ -22,6 +24,8 @@ import { Images } from 'src/images/images.entity';
       Servicedetails,
       Furniture,
       Furnituredetails,
+      Amenities,
+      Amenitiesdetails,
       Images,
     ]),
   ],

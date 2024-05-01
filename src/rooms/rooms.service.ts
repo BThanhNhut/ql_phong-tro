@@ -7,6 +7,7 @@ import { ServiceDetailsService } from 'src/servicedetails/servicedetails.service
 import { Servicedetails } from 'src/servicedetails/servicedetails.entity';
 import { Furnituredetails } from 'src/furnituredetails/furnituredetails.entity';
 import { Images } from 'src/images/images.entity';
+import { Amenitiesdetails } from 'src/amenitiesdetails/amenitiesdetails.entity';
 
 @Injectable()
 export class RoomServices {
@@ -17,6 +18,8 @@ export class RoomServices {
     private servicedetailsRepo: Repository<Servicedetails>,
     @InjectRepository(Furnituredetails)
     private furnituredetailsRepo: Repository<Furnituredetails>,
+    @InjectRepository(Amenitiesdetails)
+    private amenitiesdetailsRepo: Repository<Amenitiesdetails>,
     @InjectRepository(Images)
     private imagesRepo: Repository<Images>,
   ) {}
@@ -60,7 +63,7 @@ export class RoomServices {
   }
 
   async getAmenitiesByRoomId(roomId: number): Promise<any[]> {
-    return this.furnituredetailsRepo
+    return this.amenitiesdetailsRepo
       .createQueryBuilder('amenitiesdetails')
       .innerJoinAndSelect('amenitiesdetails.rooms', 'rooms')
       .innerJoinAndSelect('amenitiesdetails.amenities', 'amenities')

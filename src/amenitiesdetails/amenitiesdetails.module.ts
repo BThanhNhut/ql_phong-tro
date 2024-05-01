@@ -5,9 +5,19 @@ import { Accounts } from 'src/accounts/accounts.entity';
 import { AmenitiesController } from 'src/amenities/amenities.controller';
 import { AmenitiesService } from 'src/amenities/amenities.service';
 import { Amenities } from 'src/amenities/amenities.entity';
+import { Rooms } from 'src/rooms/rooms.entity';
+import { Amenitiesdetails } from './amenitiesdetails.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Accounts, Roles, Amenities])],
+  imports: [
+    TypeOrmModule.forFeature([
+      Accounts,
+      Roles,
+      Amenities,
+      Rooms,
+      Amenitiesdetails,
+    ]),
+  ],
   controllers: [AmenitiesController],
   providers: [AmenitiesService],
 })
