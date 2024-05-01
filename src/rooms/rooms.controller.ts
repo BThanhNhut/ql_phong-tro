@@ -45,4 +45,11 @@ export class RoomsController {
     console.log('vao dc fur');
     return this.roomservice.getFurnitureByRoomId(roomId);
   }
+
+  @Get(':id/images')
+  getRoomImages(@Param('id') id: string): Promise<string[]> {
+    const roomId = parseInt(id);
+    console.log('Vào images');
+    return this.roomservice.getRoomImages(roomId);
+  }
 }

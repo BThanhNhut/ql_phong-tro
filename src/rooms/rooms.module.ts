@@ -10,6 +10,7 @@ import { Services } from 'src/services/services.entity';
 import { Servicedetails } from 'src/servicedetails/servicedetails.entity';
 import { Furniture } from 'src/furniture/furniture.entity';
 import { Furnituredetails } from 'src/furnituredetails/furnituredetails.entity';
+import { Images } from 'src/images/images.entity';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { Furnituredetails } from 'src/furnituredetails/furnituredetails.entity';
       Servicedetails,
       Furniture,
       Furnituredetails,
+      Images,
     ]),
   ],
   controllers: [RoomsController],

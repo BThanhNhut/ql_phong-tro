@@ -6,6 +6,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { ServiceDetailsService } from 'src/servicedetails/servicedetails.service';
 import { Servicedetails } from 'src/servicedetails/servicedetails.entity';
 import { Furnituredetails } from 'src/furnituredetails/furnituredetails.entity';
+import { Images } from 'src/images/images.entity';
 
 @Injectable()
 export class RoomServices {
@@ -15,7 +16,9 @@ export class RoomServices {
     @InjectRepository(Servicedetails)
     private servicedetailsRepo: Repository<Servicedetails>,
     @InjectRepository(Furnituredetails)
-    private furnituredetails: Repository<Furnituredetails>,
+    private furnituredetailsRepo: Repository<Furnituredetails>,
+    @InjectRepository(Images)
+    private imagesRepo: Repository<Images>,
   ) {}
 
   async findAll(): Promise<Rooms[]> {
@@ -41,7 +44,7 @@ export class RoomServices {
   }
 
   async getFurnitureByRoomId(roomId: number): Promise<any[]> {
-    return this.furnituredetails
+    return this.furnituredetailsRepo
       .createQueryBuilder('furnituredetails')
       .innerJoinAndSelect('furnituredetails.rooms', 'rooms')
       .innerJoinAndSelect('furnituredetails.furniture', 'furniture')
@@ -57,7 +60,7 @@ export class RoomServices {
   }
 
   async getAmenitiesByRoomId(roomId: number): Promise<any[]> {
-    return this.furnituredetails
+    return this.furnituredetailsRepo
       .createQueryBuilder('amenitiesdetails')
       .innerJoinAndSelect('amenitiesdetails.rooms', 'rooms')
       .innerJoinAndSelect('amenitiesdetails.amenities', 'amenities')
@@ -72,5 +75,13 @@ export class RoomServices {
       .getMany();
   }
 
-  
+  async getRoomImages(id: number): Promise<string[]> {
+    const room = await this.roomsRepo.findOneBy({ id });
+    if (!room) {
+      throw new Error('Room not found');
+    }
+
+    const images = await this.imagesRepo.find({ where: { rooms: room } });
+    return images.map((image) => image.url);
+  }
 }
