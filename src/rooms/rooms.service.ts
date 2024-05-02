@@ -110,6 +110,7 @@ export class RoomServices {
 
       .where('accounts.id = :id_account ', { id_account })
       .andWhere('posts.id = :id_post', { id_post })
+      .andWhere('favorites.status = :status', { status: true })
       .getMany();
 
     return favorite.length > 0;
