@@ -22,4 +22,10 @@ export class PostsController {
     console.log('Vào dc wishlist');
     return this.postsservice.getWishListById(id);
   }
+
+  @Get('count/:id')
+  coutPostByAccountId(@Param('id', ParseIntPipe) id: number): Promise<number> {
+    console.log('vao dc dem');
+    return this.postsservice.coutPostByAccountId(id);
+  }
 }

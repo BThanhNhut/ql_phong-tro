@@ -6,6 +6,7 @@ import { Rooms } from 'src/rooms/rooms.entity';
 import { Repository } from 'typeorm';
 import { promises } from 'dns';
 import { Favorites } from 'src/favorites/favorites.entity';
+import { Accounts } from 'src/accounts/accounts.entity';
 
 @Injectable()
 export class PostsService {
@@ -16,6 +17,8 @@ export class PostsService {
     private readonly posttypeRepo: Repository<Posttype>,
     @InjectRepository(Favorites)
     private readonly favoritesRepo: Repository<Favorites>,
+    @InjectRepository(Accounts)
+    private readonly accountsRepo: Repository<Accounts>,
   ) {}
   async getAllPost(): Promise<any[]> {
     return this.postRepo
@@ -132,5 +135,14 @@ export class PostsService {
       ])
       .where('accounts.id = :id', { id })
       .getMany();
+  }
+
+  async coutPostByAccountId(id: number): Promise<number> {
+    const count = await this.postRepo
+      .createQueryBuilder('posts')
+      .innerJoin('posts.accounts', 'accounts')
+      .where('accounts.id = :id', { id: id })
+      .getCount();
+    return count;
   }
 }
