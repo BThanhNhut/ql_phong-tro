@@ -95,7 +95,7 @@ export class RoomServices {
     return images.map((image) => image.url);
   }
 
-  async getFavorites(id_account: number, id_post): Promise<number> {
+  async getFavorites(id_account: number, id_post): Promise<boolean> {
     // const account = await this.accountsRepo.findOneBy({ id });
     // if (!account) {
     //   throw new Error('Account not found');
