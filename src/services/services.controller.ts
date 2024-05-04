@@ -11,6 +11,11 @@ import { ServicesService } from './services.service';
 export class ServicesController {
   constructor(private readonly servicesservice: ServicesService) {}
 
+  @Get()
+  findAllService(): Promise<any> {
+    return this.servicesservice.findAllService();
+  }
+
   @Get(':id')
   findServicesByRoomId(@Param('id', ParseIntPipe) id: number) {
     return this.servicesservice.findServicesByRoomId(id);

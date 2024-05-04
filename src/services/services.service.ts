@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Services } from './services.entity';
 import { Repository } from 'typeorm';
+import { Rooms } from 'src/rooms/rooms.entity';
 
 @Injectable()
 export class ServicesService {
@@ -9,6 +10,10 @@ export class ServicesService {
     @InjectRepository(Services)
     private readonly servicesrepo: Repository<Services>,
   ) {}
+
+  async findAllService(): Promise<any[]> {
+    return this.servicesrepo.find();
+  }
 
   async findServicesByRoomId(roomId: number): Promise<Services[]> {
     return await this.servicesrepo

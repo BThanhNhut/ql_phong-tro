@@ -53,18 +53,6 @@ export class PostsService {
       .getMany();
   }
 
-  async getAllPost2(): Promise<any[]> {
-    return (
-      this.postRepo
-        .createQueryBuilder('posts')
-        .innerJoinAndSelect('posts.posttype', 'posttype')
-        .innerJoinAndSelect('posts.rooms', 'rooms')
-        .innerJoinAndSelect('posts.accounts', 'accounts')
-        // .select(['posts.id', 'posts.title', 'posts.create_at'])
-        .getMany()
-    );
-  }
-
   async getDetailPost(id_room: any): Promise<any> {
     return this.postRepo
       .createQueryBuilder('posts')
