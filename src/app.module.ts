@@ -6,7 +6,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { RolesModule } from './roles/roles.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { RoomsModule } from './rooms/rooms.module';
-import { Types } from './types/types.entity';
 import { ImagesModule } from './images/images.module';
 import { PosttypeModule } from './posttype/posttype.module';
 import { PostsModule } from './posts/posts.module';
@@ -17,6 +16,7 @@ import { FurnitureModule } from './furniture/furniture.module';
 import { ServiceDetailsModule } from './servicedetails/servicedetails.module';
 import { AmenitiesdetailsModule } from './amenitiesdetails/amenitiesdetails.module';
 import { FurnituredetailsModule } from './furnituredetails/furnituredetails.module';
+import { TypesModule } from './types/types.module';
 
 @Module({
   imports: [
@@ -38,7 +38,7 @@ import { FurnituredetailsModule } from './furnituredetails/furnituredetails.modu
     }),
     RolesModule,
     AccountsModule,
-    Types,
+    TypesModule,
     RoomsModule,
     ImagesModule,
     PosttypeModule,
