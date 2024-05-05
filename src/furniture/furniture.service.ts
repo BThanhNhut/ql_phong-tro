@@ -7,11 +7,15 @@ import { Repository } from 'typeorm';
 export class FurnitureService {
   constructor(
     @InjectRepository(Furniture)
-    private readonly servicesrepo: Repository<Furniture>,
+    private readonly furnitureRepo: Repository<Furniture>,
   ) {}
 
+  async findAllFurniture(): Promise<any> {
+    return this.furnitureRepo.find();
+  }
+
   async findServicesByRoomId(roomId: number): Promise<Furniture[]> {
-    return await this.servicesrepo
+    return await this.furnitureRepo
       .createQueryBuilder('furniture')
       .innerJoin(
         'furnituredetails',

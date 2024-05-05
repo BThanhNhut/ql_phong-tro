@@ -11,6 +11,11 @@ import { FurnitureService } from './furniture.service';
 export class FurnitureController {
   constructor(private readonly furnitureService: FurnitureService) {}
 
+  @Get()
+  findAllFurniture(): Promise<any[]> {
+    return this.furnitureService.findAllFurniture();
+  }
+
   @Get(':id')
   findServicesByRoomId(@Param('id', ParseIntPipe) id: number) {
     return this.furnitureService.findServicesByRoomId(id);
