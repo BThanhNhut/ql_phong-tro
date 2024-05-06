@@ -8,15 +8,15 @@ import { get } from 'http';
 export class RoomsController {
   constructor(private readonly roomservice: RoomServices) {}
 
-  @Get('abc')
-  a() {
-    return 'vao dc';
-  }
-
   @Get()
   findAll(): Promise<any[]> {
     console.log(this.roomservice.findAll());
     return this.roomservice.findAll();
+  }
+
+  @Get(':id')
+  findRommById(@Param('id') id: number): Promise<any> {
+    return this.roomservice.findRommById(id);
   }
 
   @Get('abcd/:id')

@@ -35,6 +35,10 @@ export class RoomServices {
     return this.roomsRepo.find();
   }
 
+  async findRommById(id: number): Promise<any> {
+    return this.roomsRepo.findOneBy({ id });
+  }
+
   async getServicesByRoomId(roomId: number): Promise<any[]> {
     return this.servicedetailsRepo
       .createQueryBuilder('servicedetails')
