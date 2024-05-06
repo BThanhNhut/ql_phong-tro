@@ -1,5 +1,6 @@
 import { Controller, Get, Param, ParseIntPipe } from '@nestjs/common';
 import { PostsService } from './posts.service';
+import { promises } from 'dns';
 
 @Controller('posts')
 export class PostsController {
@@ -8,6 +9,13 @@ export class PostsController {
   @Get()
   findAll(): Promise<any[]> {
     return this.postsservice.getAllPost();
+  }
+
+  @Get('listactive/:id')
+  coutPostByAccountIdinfo(
+    @Param('id', ParseIntPipe) id: number,
+  ): Promise<any[]> {
+    return this.postsservice.coutPostByAccountIdinfo(id);
   }
 
   @Get(':id')
