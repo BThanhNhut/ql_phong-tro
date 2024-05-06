@@ -32,7 +32,9 @@ export class RoomServices {
   ) {}
 
   async findAll(): Promise<Rooms[]> {
-    return this.roomsRepo.find();
+    return this.roomsRepo.find({
+      select: ['id', 'name_room'],
+    });
   }
 
   async findRommById(id: number): Promise<any> {
