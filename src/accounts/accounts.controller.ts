@@ -51,6 +51,11 @@ export class AccountsController {
     return this.authservice.loginAccount(requestBody);
   }
 
+  @Post('check/:username')
+  checkAccount(@Param('username') username: string) {
+    return this.accountsservice.findByUsername(username);
+  }
+
   // @Post()
   // createAccount(@Body() requestbody: CreateAccount) {
   //   console.log(requestbody);
