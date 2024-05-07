@@ -134,7 +134,7 @@ export class PostsService {
     return count;
   }
 
-  async coutPostByAccountIdinfo(id: number): Promise<any[]> {
+  async coutPostByAccountIdinfoActive(id: number): Promise<any[]> {
     return this.postRepo
       .createQueryBuilder('posts')
       .leftJoinAndSelect('posts.posttype', 'posttype')
@@ -165,6 +165,42 @@ export class PostsService {
         'accounts.customer_name',
       ])
       .where('accounts.id = :id', { id })
+      .andWhere('posts.status = :status', { status: true })
+      .getMany();
+  }
+
+  async coutPostByAccountIdinfoUnactive(id: number): Promise<any[]> {
+    return this.postRepo
+      .createQueryBuilder('posts')
+      .leftJoinAndSelect('posts.posttype', 'posttype')
+      .leftJoinAndSelect('posts.rooms', 'rooms')
+      .leftJoinAndSelect('posts.accounts', 'accounts')
+      .select([
+        'posts.id',
+        'posts.title',
+        'posts.create_at',
+
+        'rooms.id',
+        'rooms.name_room',
+        'rooms.address',
+        'rooms.room_price',
+        'rooms.deposit_price',
+        'rooms.image',
+        'rooms.area_width',
+        'rooms.area_height',
+        'rooms.phone_number',
+        'rooms.floor',
+        'rooms.number_of_people',
+        'rooms.note',
+        'rooms.note_gender',
+        'rooms.province',
+        'rooms.district',
+        'rooms.ward',
+
+        'accounts.customer_name',
+      ])
+      .where('accounts.id = :id', { id })
+      .andWhere('posts.status = :status', { status: false })
       .getMany();
   }
 }

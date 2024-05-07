@@ -12,10 +12,17 @@ export class PostsController {
   }
 
   @Get('listactive/:id')
-  coutPostByAccountIdinfo(
+  coutPostByAccountIdinfoActive(
     @Param('id', ParseIntPipe) id: number,
   ): Promise<any[]> {
-    return this.postsservice.coutPostByAccountIdinfo(id);
+    return this.postsservice.coutPostByAccountIdinfoActive(id);
+  }
+
+  @Get('listunactive/:id')
+  coutPostByAccountIdinfoUnactive(
+    @Param('id', ParseIntPipe) id: number,
+  ): Promise<any[]> {
+    return this.postsservice.coutPostByAccountIdinfoUnactive(id);
   }
 
   @Get(':id')

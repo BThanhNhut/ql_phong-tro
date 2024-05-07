@@ -19,6 +19,7 @@ export class RoomsController {
     return this.roomservice.findRommById(id);
   }
 
+
   @Get('abcd/:id')
   getAllWhishlist(@Param('id') id: string): string {
     console.log('abc' + id);

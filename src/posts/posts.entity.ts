@@ -13,6 +13,9 @@ export class Posts extends BaseDto {
   @Column()
   create_at: Date;
 
+  @Column()
+  status: boolean;
+
   @ManyToOne(() => Posttype, (posttype) => posttype.posts)
   @JoinColumn({ name: 'id_posttype' })
   posttype: Posttype;
