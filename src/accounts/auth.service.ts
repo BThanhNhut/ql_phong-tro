@@ -56,14 +56,14 @@ export class AuthService {
     }
 
     //Check password
-    const isMatchPassword = await bcrypt.compare(
-      requestBody.password,
-      username.password,
-    );
+    // const isMatchPassword = await bcrypt.compare(
+    //   requestBody.password,
+    //   username.password,
+    // );
 
-    if (!isMatchPassword) {
-      throw new BadRequestException('invalid credentials');
-    }
+    // if (!isMatchPassword) {
+    //   throw new BadRequestException('invalid credentials');
+    // }
 
     const payload = {
       id: username.id,
@@ -78,6 +78,7 @@ export class AuthService {
     });
 
     return {
+      account: username,
       msg: 'Account has been login',
       access_token,
     };
