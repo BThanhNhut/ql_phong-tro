@@ -1,8 +1,9 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { RoomServices } from './rooms.service';
 import { Rooms } from './rooms.entity';
 import { Services } from 'src/services/services.entity';
 import { get } from 'http';
+import { CreateRoom } from './dto/CreateRoom';
 
 @Controller('rooms')
 export class RoomsController {
@@ -19,6 +20,10 @@ export class RoomsController {
     return this.roomservice.findRommById(id);
   }
 
+  @Post('add')
+  addCreateRoom(@Body() requestBody: CreateRoom) {
+    return requestBody;
+  }
 
   @Get('abcd/:id')
   getAllWhishlist(@Param('id') id: string): string {
