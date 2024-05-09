@@ -127,4 +127,22 @@ export class RoomServices {
 
     return favorite.length > 0;
   }
+
+  async countRoomByAccountId(id: number): Promise<number> {
+    const count = await this.roomsRepo
+      .createQueryBuilder('rooms')
+      .innerJoin('rooms.accounts', 'accounts')
+      .where('accounts.id = :id', { id })
+      .getCount();
+    return count;
+  }
+
+  async listRoomByAccountId(id: number): Promise<any[]> {
+    const room = await this.roomsRepo
+      .createQueryBuilder('rooms')
+      .innerJoin('rooms.accounts', 'accounts')
+      .where('accounts.id = :id', { id })
+      .getMany();
+    return room;
+  }
 }

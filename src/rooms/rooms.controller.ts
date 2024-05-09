@@ -15,6 +15,11 @@ export class RoomsController {
     return this.roomservice.findAll();
   }
 
+  @Get('account/:id')
+  listRoomByAccountId(@Param('id') id: number) {
+    return this.roomservice.listRoomByAccountId(id);
+  }
+
   @Get(':id')
   findRommById(@Param('id') id: number): Promise<any> {
     return this.roomservice.findRommById(id);
@@ -69,5 +74,11 @@ export class RoomsController {
     const postId = parseInt(idPost);
     console.log('accout:' + accoutId + 'post' + postId);
     return this.roomservice.getFavorites(accoutId, postId);
+  }
+
+  @Get('count/:id')
+  countRoomByAccountId(@Param('id') id: number) {
+    console.log('dem thanmh cong');
+    return this.roomservice.countRoomByAccountId(id);
   }
 }

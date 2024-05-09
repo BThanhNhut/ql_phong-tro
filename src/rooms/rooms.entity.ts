@@ -1,3 +1,4 @@
+import { Accounts } from 'src/accounts/accounts.entity';
 import { Amenitiesdetails } from 'src/amenitiesdetails/amenitiesdetails.entity';
 import { BaseDto } from 'src/common/base.dto';
 import { Furnituredetails } from 'src/furnituredetails/furnituredetails.entity';
@@ -42,6 +43,10 @@ export class Rooms extends BaseDto {
   @ManyToOne(() => Types, (type) => type.rooms)
   @JoinColumn({ name: 'id_type' })
   types: Types;
+
+  @ManyToOne(() => Accounts, (account) => account.rooms)
+  @JoinColumn({ name: 'id_accounts' })
+  accounts: Accounts;
 
   @OneToMany(() => Posts, (post) => post.rooms)
   posts: Posts[];

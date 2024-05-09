@@ -3,6 +3,7 @@ import { BaseDto } from '../common/base.dto';
 import { Roles } from '../roles/roles.entity';
 import { Posts } from 'src/posts/posts.entity';
 import { Favorites } from 'src/favorites/favorites.entity';
+import { Rooms } from 'src/rooms/rooms.entity';
 
 @Entity({ name: 'accounts' })
 export class Accounts extends BaseDto {
@@ -33,4 +34,7 @@ export class Accounts extends BaseDto {
 
   @OneToMany(() => Favorites, (favorite) => favorite.accounts)
   favorite: Favorites[];
+
+  @OneToMany(() => Rooms, (room) => room.accounts)
+  rooms: Rooms[];
 }
