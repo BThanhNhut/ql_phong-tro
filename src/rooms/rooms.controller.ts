@@ -21,7 +21,8 @@ export class RoomsController {
   }
 
   @Post('add')
-  addCreateRoom(@Body() requestBody: CreateRoom) {
+  addCreateRoom(@Body() requestBody: any) {
+    console.log('tao phong');
     return requestBody;
   }
 
