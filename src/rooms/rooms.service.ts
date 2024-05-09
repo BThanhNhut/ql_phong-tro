@@ -11,6 +11,7 @@ import { Amenitiesdetails } from 'src/amenitiesdetails/amenitiesdetails.entity';
 import { Accounts } from 'src/accounts/accounts.entity';
 import { error } from 'console';
 import { Favorites } from 'src/favorites/favorites.entity';
+import { CreateRoom } from './dto/CreateRoom';
 
 @Injectable()
 export class RoomServices {
@@ -35,6 +36,11 @@ export class RoomServices {
     return this.roomsRepo.find({
       select: ['id', 'name_room'],
     });
+  }
+
+  async createRoom(requestbody: any) {
+    const room = this.roomsRepo.create(requestbody);
+    return this.roomsRepo.save(room);
   }
 
   async findRommById(id: number): Promise<any> {

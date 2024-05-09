@@ -10,8 +10,8 @@ export class CreateRoom {
   phone_number: string;
   floor: number;
   number_of_people: number;
-  note: string;
   note_gender: string;
+  note: string;
   province: string;
   district: string;
   ward: string;
