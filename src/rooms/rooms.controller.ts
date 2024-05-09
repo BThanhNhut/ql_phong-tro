@@ -22,7 +22,7 @@ export class RoomsController {
 
   @Post('add')
   addCreateRoom(@Body() requestBody: any) {
-    console.log('tao phong', requestBody);
+    console.log('tao phong' + requestBody);
     return requestBody;
   }
 
