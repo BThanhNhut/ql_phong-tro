@@ -17,6 +17,8 @@ import { ServiceDetailsModule } from './servicedetails/servicedetails.module';
 import { AmenitiesdetailsModule } from './amenitiesdetails/amenitiesdetails.module';
 import { FurnituredetailsModule } from './furnituredetails/furnituredetails.module';
 import { TypesModule } from './types/types.module';
+import { ContractsModule } from './contracts/contracts.module';
+import { InvoicesModule } from './invoices/invoices.module';
 
 @Module({
   imports: [
@@ -51,6 +53,9 @@ import { TypesModule } from './types/types.module';
     ServiceDetailsModule,
     FurnituredetailsModule,
     AmenitiesdetailsModule,
+
+    ContractsModule,
+    InvoicesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

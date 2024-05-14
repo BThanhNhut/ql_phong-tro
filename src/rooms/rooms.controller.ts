@@ -1,9 +1,5 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { RoomServices } from './rooms.service';
-import { Rooms } from './rooms.entity';
-import { Services } from 'src/services/services.entity';
-import { get } from 'http';
-import { CreateRoom } from './dto/CreateRoom';
 
 @Controller('rooms')
 export class RoomsController {
@@ -16,7 +12,7 @@ export class RoomsController {
   }
 
   @Get('account/:id')
-  listRoomByAccountId(@Param('id') id: number) {
+  listRoomByAccountId(@Param('id') id: number): Promise<any[]> {
     return this.roomservice.listRoomByAccountId(id);
   }
 

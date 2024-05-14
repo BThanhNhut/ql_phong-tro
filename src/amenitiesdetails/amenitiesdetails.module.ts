@@ -7,6 +7,8 @@ import { AmenitiesService } from 'src/amenities/amenities.service';
 import { Amenities } from 'src/amenities/amenities.entity';
 import { Rooms } from 'src/rooms/rooms.entity';
 import { Amenitiesdetails } from './amenitiesdetails.entity';
+import { AmenitiesdetailsController } from './amenitiesdetails.controller';
+import { AmenitiesdetailsService } from './amenitiesdetails.service';
 
 @Module({
   imports: [
@@ -18,7 +20,7 @@ import { Amenitiesdetails } from './amenitiesdetails.entity';
       Amenitiesdetails,
     ]),
   ],
-  controllers: [AmenitiesController],
-  providers: [AmenitiesService],
+  controllers: [AmenitiesdetailsController],
+  providers: [AmenitiesdetailsService],
 })
 export class AmenitiesdetailsModule {}
