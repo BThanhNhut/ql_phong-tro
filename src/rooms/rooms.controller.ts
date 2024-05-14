@@ -22,7 +22,7 @@ export class RoomsController {
   }
 
   @Post('add')
-  addCreateRoom(@Body() requestBody: any) {
+  createRoom(@Body() requestBody: any) {
     console.log(requestBody);
     return this.roomservice.createRoom(requestBody);
   }
