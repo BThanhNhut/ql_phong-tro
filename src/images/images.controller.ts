@@ -1,6 +1,13 @@
-import { Controller, Injectable } from '@nestjs/common';
+import { Body, Controller, Injectable, Post } from '@nestjs/common';
+import { ListImage } from './dto/CreateImage.dto';
+import { ImagesService } from './images.service';
 
 @Controller('images')
 export class ImagesController {
-  constructor() {}
+  constructor(private readonly imagesService: ImagesService) {}
+
+  @Post()
+  createManyImages(@Body() listImage: ListImage): Promise<any[]> {
+    return this.imagesService.createManyImages(listImage);
+  }
 }
