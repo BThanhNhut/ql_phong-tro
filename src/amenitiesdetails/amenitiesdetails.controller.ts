@@ -27,10 +27,8 @@ export class AmenitiesdetailsController {
       id_amenities: 1,
     }));
 
-    return createAmenitiesdetailsDtos;
-
-    // return this.amenitiesdetailsService.createAmenitiesdetailsService(
-    //   createAmenitiesdetailsDtos,
-    // );
+    return this.amenitiesdetailsService.createAmenitiesdetailsService(
+      createAmenitiesdetailsDtos,
+    );
   }
 }
