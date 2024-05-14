@@ -4,6 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Rooms } from 'src/rooms/rooms.entity';
 import { Furniture } from 'src/furniture/furniture.entity';
+import { CreateFurnituredetails } from './dto/CreateFurnituredetails.dto';
 
 @Injectable()
 export class FurnituredetailsService {
@@ -16,7 +17,9 @@ export class FurnituredetailsService {
     private readonly furnitureRepo: Repository<Furniture>,
   ) {}
 
-  async createFurnituredetailsService(createdetail: any[]): Promise<any[]> {
+  async createFurnituredetailsService(
+    createdetail: CreateFurnituredetails[],
+  ): Promise<any[]> {
     const furnituredetailsArray: Furnituredetails[] = [];
     for (const dto of createdetail) {
       const { id_room, id_furniture } = dto;

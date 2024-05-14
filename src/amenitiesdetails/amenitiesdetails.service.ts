@@ -4,6 +4,7 @@ import { Amenitiesdetails } from './amenitiesdetails.entity';
 import { Repository } from 'typeorm';
 import { Rooms } from 'src/rooms/rooms.entity';
 import { Amenities } from 'src/amenities/amenities.entity';
+import { Createamenitiesdetails } from './dto/Createamenitiesdetails.dto';
 
 @Injectable()
 export class AmenitiesdetailsService {
@@ -16,7 +17,9 @@ export class AmenitiesdetailsService {
     private readonly amenitiesRepo: Repository<Amenities>,
   ) {}
 
-  async createAmenitiesdetailsService(createdetail: any[]): Promise<any[]> {
+  async createAmenitiesdetailsService(
+    createdetail: Createamenitiesdetails[],
+  ): Promise<any[]> {
     const amenitiesdetailsArray: Amenitiesdetails[] = [];
     for (const dto of createdetail) {
       const { id_room, id_amenities } = dto;
