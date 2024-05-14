@@ -49,6 +49,7 @@ import { InvoicesModule } from './invoices/invoices.module';
     ServicesModule,
     AmenitiesModule,
     FurnitureModule,
+    ImagesModule,
 
     ServiceDetailsModule,
     FurnituredetailsModule,

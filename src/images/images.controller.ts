@@ -7,7 +7,8 @@ export class ImagesController {
   constructor(private readonly imagesService: ImagesService) {}
 
   @Post('add')
-  createManyImages(@Body() listImage: ListImage): Promise<any[]> {
+  createManyImages(@Body() listImage: ListImage): Promise<any> {
+    console.log('du lieu vao', listImage);
     return this.imagesService.createManyImages(listImage);
   }
 }
