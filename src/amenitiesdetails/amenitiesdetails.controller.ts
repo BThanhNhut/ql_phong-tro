@@ -23,8 +23,8 @@ export class AmenitiesdetailsController {
     console.log('Vào dc thêm detail');
 
     const createAmenitiesdetailsDtos = listAmenities.numbers.map((item) => ({
-      id_room: item,
-      id_amenities: 1,
+      id_room: listAmenities.id_room,
+      id_amenities: item,
     }));
 
     return this.amenitiesdetailsService.createAmenitiesdetailsService(

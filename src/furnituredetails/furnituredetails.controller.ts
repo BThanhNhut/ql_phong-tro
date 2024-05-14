@@ -1,6 +1,9 @@
 import { Body, Controller, Injectable, Post } from '@nestjs/common';
 import { FurnituredetailsService } from './furnituredetails.service';
-import { CreateFurnituredetails } from './dto/CreateFurnituredetails.dto';
+import {
+  CreateFurnituredetails,
+  ListNumber,
+} from './dto/CreateFurnituredetails.dto';
 
 @Controller('furnituredetails')
 export class FurnituredetailsController {
@@ -10,9 +13,15 @@ export class FurnituredetailsController {
 
   @Post('add')
   async createFurnituredetailsService(
-    @Body() createFurnituredetailsDtos: CreateFurnituredetails[],
+    @Body() listfurniture: ListNumber,
   ): Promise<any[]> {
     console.log('Vào dc thêm detail');
+
+    const createFurnituredetailsDtos = listfurniture.numbers.map((item) => ({
+      id_room: listfurniture.id_room,
+      id_furniture: item,
+    }));
+
     return this.furnituredetailsService.createFurnituredetailsService(
       createFurnituredetailsDtos,
     );
