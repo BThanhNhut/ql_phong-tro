@@ -1,6 +1,9 @@
 import { Body, Controller, Get, Injectable, Post } from '@nestjs/common';
 import { AmenitiesdetailsService } from './amenitiesdetails.service';
-import { Createamenitiesdetails } from './dto/Createamenitiesdetails.dto';
+import {
+  Createamenitiesdetails,
+  ListNumber,
+} from './dto/Createamenitiesdetails.dto';
 
 @Controller('amenitiesdetails')
 export class AmenitiesdetailsController {
@@ -15,11 +18,19 @@ export class AmenitiesdetailsController {
 
   @Post('add')
   async createManyAmenitiesdetails(
-    @Body() createAmenitiesdetailsDtos: Createamenitiesdetails[],
+    @Body() listAmenities: ListNumber,
   ): Promise<any[]> {
     console.log('Vào dc thêm detail');
-    return this.amenitiesdetailsService.createAmenitiesdetailsService(
-      createAmenitiesdetailsDtos,
-    );
+
+    const createAmenitiesdetailsDtos = listAmenities.numbers.map((item) => ({
+      id_room: item,
+      id_amenities: 1,
+    }));
+
+    return createAmenitiesdetailsDtos;
+
+    // return this.amenitiesdetailsService.createAmenitiesdetailsService(
+    //   createAmenitiesdetailsDtos,
+    // );
   }
 }
