@@ -23,8 +23,9 @@ export class PostsController {
 
   @Post('create')
   async createPost(@Body() createPostDto: CreatePostDto): Promise<Posts> {
+    console.log('vao dc tao post');
     const post = await this.postsservice.createPost(createPostDto);
-    return plainToInstance(Posts, post, { excludeExtraneousValues: true });
+    return post;
   }
 
   @Get('listactive/:id')
