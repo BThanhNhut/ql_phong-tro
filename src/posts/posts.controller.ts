@@ -1,6 +1,16 @@
-import { Controller, Get, Param, ParseIntPipe } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  ParseIntPipe,
+  Post,
+} from '@nestjs/common';
 import { PostsService } from './posts.service';
 import { promises } from 'dns';
+import { CreatePostDto } from './dto/CreatePost.dto';
+import { Posts } from './posts.entity';
+import { plainToInstance } from 'class-transformer';
 
 @Controller('posts')
 export class PostsController {
@@ -9,6 +19,12 @@ export class PostsController {
   @Get()
   findAll(): Promise<any[]> {
     return this.postsservice.getAllPost();
+  }
+
+  @Post('create')
+  async createPost(@Body() createPostDto: CreatePostDto): Promise<Posts> {
+    const post = await this.postsservice.createPost(createPostDto);
+    return plainToInstance(Posts, post, { excludeExtraneousValues: true });
   }
 
   @Get('listactive/:id')

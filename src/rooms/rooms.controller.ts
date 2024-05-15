@@ -74,7 +74,6 @@ export class RoomsController {
 
   @Get('count/:id')
   countRoomByAccountId(@Param('id') id: number) {
-    console.log('dem thanmh cong');
     return this.roomservice.countRoomByAccountId(id);
   }
 }

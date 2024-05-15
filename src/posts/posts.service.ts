@@ -1,12 +1,13 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Posts } from './posts.entity';
 import { Posttype } from 'src/posttype/posttype.entity';
 import { Rooms } from 'src/rooms/rooms.entity';
-import { Repository } from 'typeorm';
+import { DeepPartial, Repository } from 'typeorm';
 import { promises } from 'dns';
 import { Favorites } from 'src/favorites/favorites.entity';
 import { Accounts } from 'src/accounts/accounts.entity';
+import { CreatePostDto } from './dto/CreatePost.dto';
 
 @Injectable()
 export class PostsService {
@@ -19,6 +20,8 @@ export class PostsService {
     private readonly favoritesRepo: Repository<Favorites>,
     @InjectRepository(Accounts)
     private readonly accountsRepo: Repository<Accounts>,
+    @InjectRepository(Rooms)
+    private readonly roomsRepo: Repository<Rooms>,
   ) {}
   async getAllPost(): Promise<any[]> {
     return this.postRepo
@@ -93,9 +96,26 @@ export class PostsService {
       .getOne();
   }
 
-  async createPost(createPostDto: any): Promise<any> {
-    const newPost = this.posttypeRepo.create(createPostDto);
-    return this.posttypeRepo.save(newPost);
+  async createPost(createPostDto: CreatePostDto) {
+    const posttype = await this.posttypeRepo.findOne({
+      where: { id: createPostDto.posttype },
+    });
+    const rooms = await this.roomsRepo.findOne({
+      where: { id: createPostDto.rooms },
+    });
+    const accounts = await this.accountsRepo.findOne({
+      where: { id: createPostDto.accounts },
+    });
+    if (!posttype || !rooms || !accounts) {
+      throw new NotFoundException('Related entity not found');
+    }
+    const newPost = this.postRepo.create({
+      ...createPostDto,
+      posttype,
+      rooms,
+      accounts,
+    });
+    return this.postRepo.save(newPost);
   }
 
   //
