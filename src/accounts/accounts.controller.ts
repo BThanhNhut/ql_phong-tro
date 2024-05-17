@@ -33,11 +33,10 @@ export class AccountsController {
     return this.accountsservice.findAll();
   }
 
-  // @Get(':id')
-  // getAccountById(@Param('id', ParseIntPipe) id: number) {
-  //   console.log(id);
-  //   return 'ket qua la 2' + id;
-  // }
+  @Get(':id')
+  getAccountById(@Param('id', ParseIntPipe) id: number) {
+    return this.accountsservice.getAccountById(id);
+  }
 
   @Post('register')
   async registerAccount(@Body() requestBody: RegisterAccount) {

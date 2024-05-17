@@ -23,4 +23,8 @@ export class AccountsService {
   findByUsername(username: string) {
     return this.accountRepository.findOneBy({ username });
   }
+
+  getAccountById(id: number) {
+    return this.accountRepository.findOneBy({ id });
+  }
 }
