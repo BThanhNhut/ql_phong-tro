@@ -5,5 +5,6 @@ export class CreateAccount {
   customer_name: string;
   phone_number: string;
   address: string;
+  avatar: string;
   roleId: number; // id của vai trò (role)
 }
