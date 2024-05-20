@@ -4,6 +4,8 @@ import { Roles } from '../roles/roles.entity';
 import { Posts } from 'src/posts/posts.entity';
 import { Favorites } from 'src/favorites/favorites.entity';
 import { Rooms } from 'src/rooms/rooms.entity';
+import { Contracts } from 'src/contracts/contracts.entity';
+import { Invoices } from 'src/invoices/invoices.entity';
 
 @Entity({ name: 'accounts' })
 export class Accounts extends BaseDto {
@@ -37,4 +39,10 @@ export class Accounts extends BaseDto {
 
   @OneToMany(() => Rooms, (room) => room.accounts)
   rooms: Rooms[];
+
+  @OneToMany(() => Contracts, (contract) => contract.accounts)
+  contracts: Contracts[];
+
+  @OneToMany(() => Invoices, (invoice) => invoice.accounts)
+  invoices: Invoices[];
 }

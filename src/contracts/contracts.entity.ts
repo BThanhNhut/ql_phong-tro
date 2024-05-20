@@ -1,5 +1,8 @@
+import { Accounts } from 'src/accounts/accounts.entity';
 import { BaseDto } from 'src/common/base.dto';
-import { Column, Entity } from 'typeorm';
+import { Invoices } from 'src/invoices/invoices.entity';
+import { Rooms } from 'src/rooms/rooms.entity';
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
 
 @Entity({ name: 'contracts' })
 export class Contracts extends BaseDto {
@@ -27,4 +30,16 @@ export class Contracts extends BaseDto {
   note: string;
   @Column()
   status: boolean;
+
+  @OneToMany(() => Invoices, (invoice) => invoice.contracts)
+  invoices: Invoices[];
+
+  //
+  @ManyToOne(() => Rooms, (room) => room.contracts)
+  @JoinColumn({ name: 'id_rooms' })
+  rooms: Rooms;
+
+  @ManyToOne(() => Accounts, (account) => account.contracts)
+  @JoinColumn({ name: 'id_accounts' })
+  accounts: Accounts;
 }

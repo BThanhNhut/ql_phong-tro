@@ -1,6 +1,7 @@
 import { Accounts } from 'src/accounts/accounts.entity';
 import { Amenitiesdetails } from 'src/amenitiesdetails/amenitiesdetails.entity';
 import { BaseDto } from 'src/common/base.dto';
+import { Contracts } from 'src/contracts/contracts.entity';
 import { Furnituredetails } from 'src/furnituredetails/furnituredetails.entity';
 import { Images } from 'src/images/images.entity';
 import { Posts } from 'src/posts/posts.entity';
@@ -53,6 +54,9 @@ export class Rooms extends BaseDto {
 
   @OneToMany(() => Images, (image) => image.rooms)
   images: Images[];
+
+  @OneToMany(() => Contracts, (contract) => contract.rooms)
+  contracts: Contracts[];
 
   @OneToMany(() => Servicedetails, (servicedetail) => servicedetail.rooms)
   Servicedetails: Servicedetails[];
