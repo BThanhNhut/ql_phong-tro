@@ -18,6 +18,7 @@ export class ContractsService {
     const result = this.contractsRepo
       .createQueryBuilder('constracts')
       .innerJoinAndSelect('constracts.accounts', 'accounts')
+      .innerJoinAndSelect('constracts.rooms', 'rooms')
       .where('accounts.id = :id', { id })
       .getMany();
     return result;
