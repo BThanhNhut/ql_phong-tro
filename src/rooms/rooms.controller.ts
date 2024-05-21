@@ -11,6 +11,11 @@ export class RoomsController {
     return this.roomservice.findAll();
   }
 
+  @Get('all')
+  findAll2(): Promise<any[]> {
+    return this.roomservice.findAll2();
+  }
+
   @Get('account/:id')
   listRoomByAccountId(@Param('id') id: number): Promise<any[]> {
     return this.roomservice.listRoomByAccountId(id);

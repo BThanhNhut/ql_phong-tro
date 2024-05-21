@@ -23,6 +23,10 @@ export class Contracts extends BaseDto {
   @Column()
   end_date: Date;
   @Column()
+  room_price: number;
+  @Column()
+  deposit_price: number;
+  @Column()
   startpay_money: Date;
   @Column()
   payment_period: number;

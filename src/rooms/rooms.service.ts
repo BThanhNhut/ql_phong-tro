@@ -38,6 +38,10 @@ export class RoomServices {
     });
   }
 
+  async findAll2(): Promise<any[]> {
+    return this.roomsRepo.find();
+  }
+
   async createRoom(requestbody: any) {
     const room = this.roomsRepo.create(requestbody);
     return this.roomsRepo.save(room);
