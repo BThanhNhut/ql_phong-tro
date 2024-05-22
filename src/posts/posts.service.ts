@@ -33,6 +33,7 @@ export class PostsService {
         'posts.id',
         'posts.title',
         'posts.create_at',
+        'posts.status',
 
         'rooms.id',
         'rooms.name_room',
@@ -222,5 +223,16 @@ export class PostsService {
       .where('accounts.id = :id', { id })
       .andWhere('posts.status = :status', { status: false })
       .getMany();
+  }
+
+  //
+  async updateStatus(id: number, newStatus: boolean): Promise<Posts> {
+    const post = await this.postRepo.findOneBy({ id });
+    if (!post) {
+      throw new NotFoundException(`Post with ID ${id} not found`);
+    }
+    post.status = newStatus;
+    await this.postRepo.save(post);
+    return post;
   }
 }

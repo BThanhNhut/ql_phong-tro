@@ -4,6 +4,7 @@ import {
   Get,
   Param,
   ParseIntPipe,
+  Patch,
   Post,
 } from '@nestjs/common';
 import { PostsService } from './posts.service';
@@ -59,5 +60,10 @@ export class PostsController {
   coutPostByAccountId(@Param('id', ParseIntPipe) id: number): Promise<number> {
     console.log('vao dc dem');
     return this.postsservice.coutPostByAccountId(id);
+  }
+
+  @Patch(':id/status')
+  async updateStatus(@Param('id') id: number, @Body('status') status: boolean) {
+    return await this.postsservice.updateStatus(id, status);
   }
 }

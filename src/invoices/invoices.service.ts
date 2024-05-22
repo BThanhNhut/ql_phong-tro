@@ -9,4 +9,18 @@ export class InvoicesService {
     @InjectRepository(Invoices)
     private invoicesRepo: Repository<Invoices>,
   ) {}
+
+  async findAll() {
+    return this.invoicesRepo.find();
+  }
+
+  async createInvoices(invoicesData: any) {
+    try {
+      console.log('vao dc invoice');
+      const newContract = await this.invoicesRepo.create(invoicesData);
+      return await this.invoicesRepo.save(newContract);
+    } catch (error) {
+      throw new Error(`Error creating contract: ${error}`);
+    }
+  }
 }

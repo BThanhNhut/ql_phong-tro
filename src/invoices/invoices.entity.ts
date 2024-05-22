@@ -6,15 +6,15 @@ import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
 @Entity('invoices')
 export class Invoices extends BaseDto {
   @Column()
-  monthly_bill: string;
+  monthly_bill: number;
   @Column()
   service_charge: number;
   @Column()
   service_note: string;
   @Column()
-  incurred: number;
+  discount: number;
   @Column()
-  incurred_note: number;
+  discount_note: string;
   @Column()
   note: string;
   @Column()

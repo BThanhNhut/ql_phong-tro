@@ -34,10 +34,8 @@ export class Contracts extends BaseDto {
   note: string;
   @Column()
   status: boolean;
-
   @OneToMany(() => Invoices, (invoice) => invoice.contracts)
   invoices: Invoices[];
-
   //
   @ManyToOne(() => Rooms, (room) => room.contracts)
   @JoinColumn({ name: 'id_rooms' })
