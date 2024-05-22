@@ -52,6 +52,7 @@ export class PostsService {
         'rooms.district',
         'rooms.ward',
 
+        'accounts.id',
         'accounts.customer_name',
       ])
       .getMany();
