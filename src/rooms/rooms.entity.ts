@@ -5,7 +5,8 @@ import { Contracts } from 'src/contracts/contracts.entity';
 import { Furnituredetails } from 'src/furnituredetails/furnituredetails.entity';
 import { Images } from 'src/images/images.entity';
 import { Posts } from 'src/posts/posts.entity';
-import { Servicedetails } from 'src/servicedetails/servicedetails.entity';
+import { Services } from 'src/services/services.entity';
+// import { Servicedetails } from 'src/servicedetails/servicedetails.entity';
 import { Types } from 'src/types/types.entity';
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
 
@@ -55,11 +56,14 @@ export class Rooms extends BaseDto {
   @OneToMany(() => Images, (image) => image.rooms)
   images: Images[];
 
+  @OneToMany(() => Services, (service) => service.rooms)
+  services: Services[];
+
   @OneToMany(() => Contracts, (contract) => contract.rooms)
   contracts: Contracts[];
 
-  @OneToMany(() => Servicedetails, (servicedetail) => servicedetail.rooms)
-  Servicedetails: Servicedetails[];
+  // @OneToMany(() => Servicedetails, (servicedetail) => servicedetail.rooms)
+  // Servicedetails: Servicedetails[];
 
   @OneToMany(() => Furnituredetails, (furnituredetail) => furnituredetail.rooms)
   furnituredetails: Furnituredetails[];

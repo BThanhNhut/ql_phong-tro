@@ -1,6 +1,6 @@
 import { BaseDto } from 'src/common/base.dto';
-import { Servicedetails } from 'src/servicedetails/servicedetails.entity';
-import { Column, Entity, OneToMany } from 'typeorm';
+import { Rooms } from 'src/rooms/rooms.entity';
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
 
 @Entity('services')
 export class Services extends BaseDto {
@@ -15,6 +15,7 @@ export class Services extends BaseDto {
   @Column()
   status: boolean;
 
-  @OneToMany(() => Servicedetails, (Servicedetail) => Servicedetail.services)
-  Servicedetails: Servicedetails[];
+  @ManyToOne(() => Rooms, (room) => room.services)
+  @JoinColumn({ name: 'id_rooms' })
+  rooms: Rooms;
 }

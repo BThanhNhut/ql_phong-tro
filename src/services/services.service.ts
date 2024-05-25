@@ -18,8 +18,7 @@ export class ServicesService {
   async findServicesByRoomId(roomId: number): Promise<Services[]> {
     return await this.servicesrepo
       .createQueryBuilder('services')
-      .innerJoin('servicedetails', 'detail', 'detail.id_service = services.id')
-      .innerJoin('rooms', 'room', 'room.id = detail.id_room')
+      .innerJoinAndSelect('services.rooms', 'room')
       .where('room.id = :roomId', { roomId })
       .getMany();
   }

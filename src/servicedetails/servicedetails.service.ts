@@ -3,7 +3,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Rooms } from 'src/rooms/rooms.entity';
 import { Services } from 'src/services/services.entity';
 import { Repository } from 'typeorm';
-import { Servicedetails } from './servicedetails.entity';
 
 @Injectable()
 export class ServiceDetailsService {
@@ -12,18 +11,16 @@ export class ServiceDetailsService {
     private readonly roomrepo: Repository<Rooms>,
     @InjectRepository(Services)
     private readonly servicerepo: Repository<Services>,
-    @InjectRepository(Servicedetails)
-    private readonly ServicedetailsRepo: Repository<Servicedetails>,
   ) {}
 
-  async getAllServicebyIdRoom(id_room: number): Promise<any[]> {
-    console.log('Vao dc cai nay');
-    return this.ServicedetailsRepo.createQueryBuilder('servicedetails')
-      .leftJoinAndSelect('servicedetails.rooms', 'rooms')
-      .leftJoinAndSelect('servicedetails.services', 'services')
-      .where('rooms.id = :id', { id: id_room })
-      .getMany();
-  }
+  // async getAllServicebyIdRoom(id_room: number): Promise<any[]> {
+  //   console.log('Vao dc cai nay');
+  //   return this.ServicedetailsRepo.createQueryBuilder('servicedetails')
+  //     .leftJoinAndSelect('servicedetails.rooms', 'rooms')
+  //     .leftJoinAndSelect('servicedetails.services', 'services')
+  //     .where('rooms.id = :id', { id: id_room })
+  //     .getMany();
+  // }
 
   async findServicesByRoomId(roomId: number): Promise<Services[]> {
     // Sử dụng INNER JOIN để kết hợp các bảng

@@ -38,13 +38,6 @@ export class RoomsController {
     return 'Vao dc wishlist';
   }
 
-  @Get(':id/services')
-  getServicesByRoomId(@Param('id') id: string): Promise<any[]> {
-    const roomId = parseInt(id);
-    console.log('vao dc');
-    return this.roomservice.getServicesByRoomId(roomId);
-  }
-
   @Get(':id/furniture')
   getFurnitureByRoomId(@Param('id') id: string): Promise<any[]> {
     const roomId = parseInt(id);

@@ -1,10 +1,4 @@
-import {
-  Controller,
-  Get,
-  Injectable,
-  Param,
-  ParseIntPipe,
-} from '@nestjs/common';
+import { Controller, Get, Param, ParseIntPipe } from '@nestjs/common';
 import { ServicesService } from './services.service';
 
 @Controller('services')
@@ -13,11 +7,13 @@ export class ServicesController {
 
   @Get()
   findAllService(): Promise<any> {
+    console.log('vao dc');
     return this.servicesservice.findAllService();
   }
 
   @Get(':id')
   findServicesByRoomId(@Param('id', ParseIntPipe) id: number) {
+    console.log('vao dc id la', id);
     return this.servicesservice.findServicesByRoomId(id);
   }
 }

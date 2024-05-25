@@ -4,7 +4,7 @@ import { Services } from 'src/services/services.entity';
 import { Repository, getConnection } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ServiceDetailsService } from 'src/servicedetails/servicedetails.service';
-import { Servicedetails } from 'src/servicedetails/servicedetails.entity';
+// import { Servicedetails } from 'src/servicedetails/servicedetails.entity';
 import { Furnituredetails } from 'src/furnituredetails/furnituredetails.entity';
 import { Images } from 'src/images/images.entity';
 import { Amenitiesdetails } from 'src/amenitiesdetails/amenitiesdetails.entity';
@@ -18,8 +18,6 @@ export class RoomServices {
   constructor(
     @InjectRepository(Rooms)
     private roomsRepo: Repository<Rooms>,
-    @InjectRepository(Servicedetails)
-    private servicedetailsRepo: Repository<Servicedetails>,
     @InjectRepository(Furnituredetails)
     private furnituredetailsRepo: Repository<Furnituredetails>,
     @InjectRepository(Amenitiesdetails)
@@ -49,24 +47,6 @@ export class RoomServices {
 
   async findRommById(id: number): Promise<any> {
     return this.roomsRepo.findOneBy({ id });
-  }
-
-  async getServicesByRoomId(roomId: number): Promise<any[]> {
-    return this.servicedetailsRepo
-      .createQueryBuilder('servicedetails')
-      .innerJoinAndSelect('servicedetails.rooms', 'rooms')
-      .innerJoinAndSelect('servicedetails.services', 'services')
-      .select([
-        'servicedetails.id',
-        'services.id',
-        'services.service_name',
-        'services.cost',
-        'services.note',
-        'services.icon',
-        'services.status',
-      ])
-      .where('rooms.id = :roomId', { roomId })
-      .getMany();
   }
 
   async getFurnitureByRoomId(roomId: number): Promise<any[]> {

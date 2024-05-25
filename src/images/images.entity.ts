@@ -8,6 +8,6 @@ export class Images extends BaseDto {
   url: string;
 
   @ManyToOne(() => Rooms, (room) => room.image)
-  @JoinColumn({ name: 'id_rooms' }) // Thêm dòng này để chỉ định tên trường khóa ngoại
+  @JoinColumn({ name: 'id_rooms' })
   rooms: Rooms;
 }

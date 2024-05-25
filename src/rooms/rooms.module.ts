@@ -7,7 +7,6 @@ import { Accounts } from 'src/accounts/accounts.entity';
 import { Roles } from 'src/roles/roles.entity';
 import { Rooms } from './rooms.entity';
 import { Services } from 'src/services/services.entity';
-import { Servicedetails } from 'src/servicedetails/servicedetails.entity';
 import { Furniture } from 'src/furniture/furniture.entity';
 import { Furnituredetails } from 'src/furnituredetails/furnituredetails.entity';
 import { Images } from 'src/images/images.entity';
@@ -24,7 +23,6 @@ import { Invoices } from 'src/invoices/invoices.entity';
       Roles,
       Rooms,
       Services,
-      Servicedetails,
       Furniture,
       Furnituredetails,
       Amenities,
