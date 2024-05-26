@@ -121,11 +121,12 @@ export class RoomServices {
     return count;
   }
 
-  async listRoomByAccountId(id: number): Promise<any[]> {
+  async listRoomByAccountId(id: number, status): Promise<any[]> {
     const room = await this.roomsRepo
       .createQueryBuilder('rooms')
-      .innerJoin('rooms.accounts', 'accounts')
+      .innerJoinAndSelect('rooms.accounts', 'accounts')
       .where('accounts.id = :id', { id })
+      .andWhere('rooms.status = :status', { status })
       .getMany();
     return room;
   }

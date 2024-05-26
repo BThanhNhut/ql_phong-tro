@@ -16,9 +16,12 @@ export class RoomsController {
     return this.roomservice.findAll2();
   }
 
-  @Get('account/:id')
-  listRoomByAccountId(@Param('id') id: number): Promise<any[]> {
-    return this.roomservice.listRoomByAccountId(id);
+  @Get('account/:id/:status')
+  listRoomByAccountId(
+    @Param('id') id: number,
+    @Param('status') status: boolean,
+  ): Promise<any[]> {
+    return this.roomservice.listRoomByAccountId(id, status);
   }
 
   @Get(':id')
@@ -30,12 +33,6 @@ export class RoomsController {
   createRoom(@Body() requestBody: any) {
     console.log(requestBody);
     return this.roomservice.createRoom(requestBody);
-  }
-
-  @Get('abcd/:id')
-  getAllWhishlist(@Param('id') id: string): string {
-    console.log('abc' + id);
-    return 'Vao dc wishlist';
   }
 
   @Get(':id/furniture')
