@@ -3,7 +3,6 @@ import { AccountsService } from './accounts.service';
 import { JwtService } from '@nestjs/jwt';
 import { RegisterAccount } from './dto/registerAccount.dto';
 import * as bcrypt from 'bcrypt';
-import { CreateAccount } from './dto/CreateAccount ';
 import { LoginAccount } from './dto/loginAccount';
 
 @Injectable()

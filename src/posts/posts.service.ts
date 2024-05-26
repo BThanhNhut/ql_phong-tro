@@ -55,6 +55,7 @@ export class PostsService {
         'accounts.id',
         'accounts.customer_name',
       ])
+      .where('posts.status = :status', { status: true })
       .getMany();
   }
 
