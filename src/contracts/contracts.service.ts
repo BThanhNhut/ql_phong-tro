@@ -26,7 +26,6 @@ export class ContractsService {
 
   async createContract(contractData: any): Promise<any> {
     try {
-      console.log('vao dc');
       const newContract = await this.contractsRepo.create(contractData);
       return await this.contractsRepo.save(newContract);
     } catch (error) {

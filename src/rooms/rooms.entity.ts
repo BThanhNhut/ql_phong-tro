@@ -42,6 +42,9 @@ export class Rooms extends BaseDto {
   district: string;
   @Column()
   ward: string;
+  @Column()
+  status: boolean;
+
   @ManyToOne(() => Types, (type) => type.rooms)
   @JoinColumn({ name: 'id_type' })
   types: Types;
