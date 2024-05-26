@@ -25,9 +25,9 @@ export class ServicesController {
     return this.servicesservice.findServicesByRoomId(id);
   }
 
-  @Post(':id/add')
+  @Post(':roomId/add')
   async addServices(
-    @Param('id') id: number,
+    @Param('roomId') id: number,
     @Body() serviceList: CreateServiceDto[],
   ) {
     return this.servicesservice.addServices(id, serviceList);
