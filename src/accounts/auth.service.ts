@@ -14,7 +14,6 @@ export class AuthService {
   ) {}
 
   async registerAccount(requestBody: RegisterAccount) {
-    console.log('au au');
     const username = await this.accountsservice.findByUsername(
       requestBody.username,
     );
@@ -42,6 +41,7 @@ export class AuthService {
     });
 
     return {
+      account: saveaccount,
       msg: 'Account has been created',
       access_token,
     };
