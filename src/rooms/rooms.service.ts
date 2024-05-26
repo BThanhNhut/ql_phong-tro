@@ -130,4 +130,13 @@ export class RoomServices {
       .getMany();
     return room;
   }
+
+  async updateStatus(id: number, newStatus: boolean): Promise<Rooms> {
+    const room = await this.roomsRepo.findOneBy({ id });
+    if (!room) {
+      console.log('error');
+    }
+    room.status = newStatus;
+    return this.roomsRepo.save(room);
+  }
 }

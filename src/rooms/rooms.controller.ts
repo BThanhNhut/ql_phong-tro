@@ -71,4 +71,14 @@ export class RoomsController {
   countRoomByAccountId(@Param('id') id: number) {
     return this.roomservice.countRoomByAccountId(id);
   }
+
+  @Post(':id/:status')
+  async updateRoomStatus(
+    @Param('id') id: number,
+    @Param('status') status: string,
+  ) {
+    console.log('Vao dc update');
+    const newStatus = status === 'true';
+    return this.roomservice.updateStatus(id, newStatus);
+  }
 }

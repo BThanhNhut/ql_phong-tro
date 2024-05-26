@@ -9,9 +9,12 @@ export class ContractsController {
     return this.contractServices.findAll();
   }
 
-  @Get('accounts/:id')
-  findAllByIdAccount(@Param('id') id: number) {
-    return this.contractServices.findAllByIdAccount(id);
+  @Get('accounts/:id/:status')
+  findAllByIdAccount(
+    @Param('id') id: number,
+    @Param('status') status: boolean,
+  ) {
+    return this.contractServices.findAllByIdAccount(id, status);
   }
 
   @Post('create')

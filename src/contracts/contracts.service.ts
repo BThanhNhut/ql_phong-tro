@@ -14,12 +14,13 @@ export class ContractsService {
     return this.contractsRepo.find();
   }
 
-  findAllByIdAccount(id: number): Promise<any[]> {
+  findAllByIdAccount(id: number, status: boolean): Promise<any[]> {
     const result = this.contractsRepo
       .createQueryBuilder('constracts')
       .innerJoinAndSelect('constracts.accounts', 'accounts')
       .innerJoinAndSelect('constracts.rooms', 'rooms')
       .where('accounts.id = :id', { id })
+      .andWhere('constracts.status = :status', { status })
       .getMany();
     return result;
   }
