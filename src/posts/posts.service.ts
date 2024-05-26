@@ -145,7 +145,7 @@ export class PostsService {
         'rooms.image',
       ])
       .where('accounts.id = :id', { id })
-      .andWhere('posts.status = :status', { status: false })
+      .andWhere('posts.status = :status', { status: true })
       .getMany();
   }
 
