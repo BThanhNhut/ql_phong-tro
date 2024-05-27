@@ -14,9 +14,19 @@ export class InvoicesService {
     return this.invoicesRepo.find();
   }
 
+  findAllByIdAccount(id: number, status: boolean): Promise<any[]> {
+    const result = this.invoicesRepo
+      .createQueryBuilder('invoices')
+      .innerJoinAndSelect('invoices.contracts', 'contracts')
+      .innerJoinAndSelect('invoices.accounts', 'accounts')
+      .where('accounts.id = :id', { id })
+      .andWhere('invoices.status = :status', { status })
+      .getMany();
+    return result;
+  }
+
   async createInvoices(invoicesData: any) {
     try {
-      console.log('vao dc invoice');
       const newContract = await this.invoicesRepo.create(invoicesData);
       return await this.invoicesRepo.save(newContract);
     } catch (error) {

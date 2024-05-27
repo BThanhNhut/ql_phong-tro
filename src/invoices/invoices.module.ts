@@ -6,9 +6,12 @@ import { InvoicesService } from './invoices.service';
 import { Invoices } from './invoices.entity';
 import { Accounts } from 'src/accounts/accounts.entity';
 import { Rooms } from 'src/rooms/rooms.entity';
+import { Contracts } from 'src/contracts/contracts.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Roles, Invoices, Accounts, Rooms])],
+  imports: [
+    TypeOrmModule.forFeature([Roles, Invoices, Accounts, Rooms, Contracts]),
+  ],
   controllers: [InvoicesController],
   providers: [InvoicesService],
 })
