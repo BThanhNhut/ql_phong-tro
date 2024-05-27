@@ -23,4 +23,10 @@ export class InvoicesController {
     console.log(newInvoice);
     return this.invoicesService.createInvoices(newInvoice);
   }
+
+  @Post(':id/:status')
+  async updateStatus(@Param('id') id: number, @Param('status') status: string) {
+    const newStatus = status === 'true';
+    return this.invoicesService.updateInvoiceStatus(id, newStatus);
+  }
 }

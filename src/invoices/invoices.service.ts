@@ -33,4 +33,13 @@ export class InvoicesService {
       throw new Error(`Error creating contract: ${error}`);
     }
   }
+
+  async updateInvoiceStatus(id: number, newStatus: boolean): Promise<Invoices> {
+    const invoice = await this.invoicesRepo.findOneBy({ id });
+    if (!invoice) {
+      console.log('error');
+    }
+    invoice.status = newStatus;
+    return this.invoicesRepo.save(invoice);
+  }
 }

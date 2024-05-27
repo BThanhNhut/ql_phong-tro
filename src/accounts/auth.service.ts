@@ -20,8 +20,8 @@ export class AuthService {
       throw new BadRequestException('Username already exist');
     }
     //hash password
-    const hashpassword = await bcrypt.hash(requestBody.password, 10);
-    requestBody.password = hashpassword;
+    // const hashpassword = await bcrypt.hash(requestBody.password, 10);
+    // requestBody.password = hashpassword;
 
     //save user
     const saveaccount = await this.accountsservice.createAccount(requestBody);

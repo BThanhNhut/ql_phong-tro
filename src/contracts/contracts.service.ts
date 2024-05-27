@@ -33,4 +33,16 @@ export class ContractsService {
       throw new Error(`Error creating contract: ${error}`);
     }
   }
+
+  async updateContractStatus(
+    id: number,
+    newStatus: boolean,
+  ): Promise<Contracts> {
+    const contract = await this.contractsRepo.findOneBy({ id });
+    if (!contract) {
+      console.error('update thất bại');
+    }
+    contract.status = newStatus;
+    return this.contractsRepo.save(contract);
+  }
 }

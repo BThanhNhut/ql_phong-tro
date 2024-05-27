@@ -22,4 +22,10 @@ export class ContractsController {
     console.log(newContract);
     return this.contractServices.createContract(newContract);
   }
+
+  @Post(':id/:status')
+  async updateStatus(@Param('id') id: number, @Param('status') status: string) {
+    const newStatus = status === 'true';
+    return this.contractServices.updateContractStatus(id, newStatus);
+  }
 }
